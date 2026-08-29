@@ -225,11 +225,19 @@ Scroll pacing runs: **dense luminous hero → the spine, wide and interactive �
 
 Five plainly-named things NPG takes on, with one sentence each: live recording, film, live events, touring racks, system design. Hairline rule above each, no fills, no icons, no boxes. Its job is to make the non-content work visible as real capability, which is what carries the "technical partner, content included but not limited to" positioning now that the branching diagram is gone.
 
+## Aspect, not width
+
+Layout switches on **aspect ratio as well as width**. Past `4/5` the hero stacks — picture first, copy under it — however wide the window is. Overlaying copy on a picture only works while the picture is wide; in a tall window the frame crops the scene to a strip and the copy covers what survives. A half-screen window on a large display is the common case and it is not narrow, so a width-only breakpoint misses it entirely.
+
+The drawn scene is authored at **4:3 (`0 -40 1600 1200`)**, not 16:9, for the same reason: `slice` crops the axis the frame does not need, and a 16:9 drawing in a portrait frame loses everything but the centre. The extra height is ceiling above the truss and floor in front of the stage — both croppable without losing the band.
+
 ## The masthead and the hero
 
 The hero is a **full viewport** (`100svh`), pulled up under the masthead by a negative margin equal to `--masthead-h`, so the picture runs to the top edge and the translucent masthead floats over it. Without that pull the hero starts below the masthead, its bottom lands past the fold, and the primary action is clipped.
 
 The masthead carries the **real logo**, not a type stand-in: a reversed asset derived from the master by mapping white to transparency via ink density, so the monogram's blue noise survives the recolour. Its alpha curve is lifted (gamma 0.62) because the master's mid-range ink density dissolves at masthead size.
+
+The bar's blur sits on a **pseudo-element**, never on the bar itself. An image inside a `backdrop-filter` element composites unreliably, and the mark was dropping out of the render while the text beside it stayed. The bar also paints its own ground rather than borrowing the picture's: the hero runs underneath it, so what is behind the logo changes with the viewport — including the phone side's blown-out lamps.
 
 ## The Cloud Field
 

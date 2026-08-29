@@ -184,7 +184,18 @@ body {
   height: var(--masthead-h);
   padding: 0 var(--gutter);
   border-bottom: 1px solid var(--rule);
-  background: linear-gradient(to bottom, rgba(3, 8, 15, 0.92), rgba(3, 8, 15, 0.55));
+  isolation: isolate;
+}
+
+/* The blur lives on a pseudo-element, not on the bar itself: an image inside a
+   backdrop-filtered element composites unreliably, and the mark was dropping out
+   of the render while the text beside it stayed. */
+.masthead::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom, rgba(3, 8, 15, 0.97) 0%, rgba(3, 8, 15, 0.9) 58%, rgba(3, 8, 15, 0.72) 100%);
   backdrop-filter: blur(14px);
 }
 
@@ -284,6 +295,32 @@ body {
   gap: var(--s3);
   margin-top: var(--s5);
 }
+
+/* Drawing title block — native to the world, used once. Lives beside the gap
+   copy now that the hero is a picture. */
+.titleblock {
+  align-self: start;
+  min-width: 17rem;
+  border: 1px solid var(--rule);
+  background: rgba(7, 21, 34, 0.55);
+  backdrop-filter: blur(6px);
+  font-size: 0.625rem;
+  font-variation-settings: "wdth" 88, "wght" 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.titleblock__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s5);
+  padding: 0.6em 1em;
+  border-bottom: 1px solid var(--rule);
+}
+.titleblock__row:last-child { border-bottom: 0; }
+.titleblock__row span { color: var(--slate); }
+.titleblock__row b { font-variation-settings: "wdth" 88, "wght" 600; color: var(--azure-pale); }
 
 /* ---------- The gap, stated once, under the picture ---------- */
 
@@ -625,11 +662,7 @@ body {
   /* Absolute placement collides with the hero actions once the column narrows,
      so the title block rejoins the flow and sits under them. */
   .hero { display: block; min-height: 0; }
-  .titleblock {
-    position: static;
-    margin-top: var(--s7);
-    max-width: 22rem;
-  }
+  .titleblock { min-width: 0; max-width: 24rem; }
   .hero__actions .btn { flex: 1 1 auto; justify-content: center; }
 }
 
@@ -709,6 +742,29 @@ body {
   .hero { display: block; min-height: 0; overflow: visible; }
   .hero__stage { position: relative; height: 58vh; min-height: 20rem; }
   .hero__overlay { padding-top: var(--s5); }
+  .hero__scrim { display: none; }
+  .hero__overlay { padding-top: var(--s6); }
+  .compare__tag { top: auto; bottom: var(--s3); }
+  .compare__grip { top: 72%; }
+}
+
+/* ---------- Tall windows (half-screen, portrait monitors) ---------- */
+
+/* Overlaying copy on a picture only works while the picture is wide. In a
+   portrait window the frame crops the scene to a strip and the copy covers what
+   is left, so past 4:5 the hero stacks the way it does on a phone and the stage
+   is bounded by width rather than height. */
+@media (min-width: 900px) and (max-aspect-ratio: 4 / 5) {
+  .hero {
+    display: block;
+    min-height: 0;
+    overflow: visible;
+  }
+  .hero__stage {
+    position: relative;
+    height: min(56vh, 62vw);
+    min-height: 22rem;
+  }
   .hero__scrim { display: none; }
   .hero__overlay { padding-top: var(--s6); }
   .compare__tag { top: auto; bottom: var(--s3); }

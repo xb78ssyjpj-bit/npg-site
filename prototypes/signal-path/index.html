@@ -85,8 +85,8 @@
               <stop offset="1" stop-color="#9BDCFF" stop-opacity="0"/>
             </linearGradient>
 
-            <symbol id="npgStage" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
-              <rect width="1600" height="900" fill="url(#npgBackdrop)"/>
+            <symbol id="npgStage" viewBox="0 -40 1600 1200" preserveAspectRatio="xMidYMid slice">
+              <rect x="0" y="-40" width="1600" height="1200" fill="url(#npgBackdrop)"/>
 
               <!-- Haze behind the players: without a lit ground the silhouettes
                    are black on black and the whole scene reads as an empty box. -->
@@ -160,7 +160,7 @@
                 <path d="M296 800 l 212 0 l -32 -72 l -148 0 z"/>
                 <path d="M1052 800 l 212 0 l -32 -72 l -148 0 z"/>
               </g>
-              <rect x="0" y="794" width="1600" height="106" fill="#03080F"/>
+              <rect x="0" y="794" width="1600" height="366" fill="#03080F"/>
             </symbol>
           </defs>
         </svg>
@@ -168,7 +168,7 @@
 
         <div class="compare__stage">
         <div class="compare__frame compare__frame--after" aria-hidden="true">
-          <svg class="scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+          <svg class="scene" viewBox="0 -40 1600 1200" preserveAspectRatio="xMidYMid slice">
             <use href="#npgStage"/>
           </svg>
           <span class="compare__tag compare__tag--right">NPG capture</span>
@@ -176,7 +176,7 @@
 
         <div class="compare__frame compare__frame--before" id="compareBefore" aria-hidden="true">
           <div class="scene-phone">
-            <svg class="scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+            <svg class="scene" viewBox="0 -40 1600 1200" preserveAspectRatio="xMidYMid slice">
               <use href="#npgStage"/>
               <!-- the lights clip, and there are heads in the way -->
               <g fill="#F4F9FC">
