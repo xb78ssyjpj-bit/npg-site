@@ -649,7 +649,7 @@ body {
 .does__head {
   display: grid;
   gap: var(--s5);
-  margin-bottom: clamp(3rem, 7vh, 5rem);
+  margin-bottom: clamp(2.5rem, 5vh, 3.5rem);
 }
 
 @media (min-width: 900px) {
@@ -665,11 +665,19 @@ body {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: var(--s6) var(--s5);
+  gap: var(--s5) var(--s5);
 }
 
 @media (min-width: 720px)  { .does__list { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1040px) { .does__list { grid-template-columns: repeat(3, 1fr); } }
+/* Short enough now to sit in one row, which also kills the empty cell a 3+2 grid left. */
+@media (min-width: 1180px) {
+  .does__list { grid-template-columns: repeat(5, 1fr); gap: var(--s4); }
+  .does__name {
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem);   /* the documented title step */
+    min-height: 2.3em;                          /* so notes share a baseline when a name wraps */
+  }
+}
 
 .does__item {
   border-top: 1px solid var(--rule);
@@ -687,7 +695,7 @@ body {
 
 .does__note {
   margin: 0;
-  max-width: 42ch;
+  max-width: 30ch;
   font-size: 0.9375rem;
   line-height: 1.55;
   color: var(--paper-dim);
