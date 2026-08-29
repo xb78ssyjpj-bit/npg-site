@@ -1,0 +1,1378 @@
+/* ==========================================================================
+   Nuages Production Group — "The Technical Register"
+   Tokens are normative and documented in /DESIGN.md.
+   One typeface (Archivo, variable). One accent (#00A0FF, from the logo).
+   Light-dominant page, anchored by deep-navy hero and footer.
+   ========================================================================== */
+
+:root {
+  /* --- Accent: sampled directly from the logo wordmark --- */
+  --azure: #00a0ff;
+  --azure-deep: #0072b8;   /* small text / links on LIGHT grounds only */
+  --azure-tint: #e6f5ff;
+
+  /* --- Ink (deep navy anchors) --- */
+  --ink: #071b2b;
+  --ink-deep: #04121d;
+  --ink-raised: #0e2a3f;
+
+  /* --- Neutrals --- */
+  --slate: #5a7183;         /* secondary text on light  — 5.1:1 on white */
+  --slate-light: #8fa3b3;   /* secondary text on dark   — 6.7:1 on ink   */
+  --paper: #ffffff;
+  --paper-tint: #f2f6fa;
+  --paper-tint-2: #e7eef4;
+
+  /* --- Hairlines --- */
+  --line: rgba(7, 27, 43, 0.13);
+  --line-strong: rgba(7, 27, 43, 0.26);
+  --line-dark: rgba(255, 255, 255, 0.15);
+  --line-dark-strong: rgba(255, 255, 255, 0.32);
+
+  /* --- Functional states --- */
+  --state-error: #b3261e;
+  --state-success: #1f6b3b;
+
+  /* Derived alphas — the only two, both tints of tokens above. */
+  --shadow-masthead: rgba(7, 27, 43, 0.09);   /* ink @ 9%    */
+  --focus-ring: rgba(0, 160, 255, 0.22);      /* azure @ 22% */
+
+  /* --- Type --- */
+  --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+
+  --t-display: clamp(2.5rem, 6.5vw, 5.75rem);
+  --t-headline: clamp(1.9rem, 4vw, 3.4rem);
+  /* Sits between headline and title: the discipline headings and the footer
+     wordmark, which both need to out-rank a title without becoming a headline. */
+  --t-subhead: clamp(1.35rem, 2.4vw, 1.9rem);
+  /* The footer wordmark is the brand mark and must sit above a subhead;
+     merging the two flattened that hierarchy. */
+  --t-mark: clamp(1.6rem, 3vw, 2.2rem);
+  --t-h3: clamp(1.15rem, 1.8vw, 1.45rem);
+  --t-lede: clamp(1.05rem, 1.5vw, 1.3rem);
+  --t-body: 1rem;
+  --t-sm: 0.9375rem;
+  --t-label: 0.75rem;
+  --t-micro: 0.6875rem;
+
+  /* --- Spacing --- */
+  --s1: 0.5rem;
+  --s2: 0.75rem;
+  --s3: 1rem;
+  --s4: 1.5rem;
+  --s5: 2rem;
+  --s6: 3rem;
+  --s7: 4.5rem;
+  --s8: 7rem;
+  --s9: 10rem;
+
+  --container: 1240px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.65;
+  font-stretch: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--azure);
+  color: var(--ink-deep);
+}
+
+:focus-visible {
+  outline: 3px solid var(--azure);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Layout primitives
+   -------------------------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--s4);
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-inline: var(--s3);
+  }
+}
+
+.section {
+  padding-block: var(--s8);
+}
+
+.section--tight {
+  padding-block: var(--s7);
+}
+
+.section--tint {
+  background: var(--paper-tint);
+}
+
+.section--ink {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Asymmetric editorial split: narrow label column + wide content column */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  gap: var(--s6);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .split {
+    grid-template-columns: 1fr;
+    gap: var(--s4);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Typography
+   -------------------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: -0.015em;
+  line-height: 1.06;
+  text-wrap: balance;
+}
+
+.display {
+  font-size: var(--t-display);
+  font-weight: 300;
+  font-stretch: 112%;
+  letter-spacing: -0.022em;
+  line-height: 1.02;
+}
+
+.headline {
+  font-size: var(--t-headline);
+  font-weight: 300;
+  font-stretch: 108%;
+}
+
+h3,
+.title {
+  font-size: var(--t-h3);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+}
+
+p {
+  margin: 0 0 1em;
+  max-width: 66ch;
+}
+
+.lede {
+  font-size: var(--t-lede);
+  line-height: 1.5;
+  max-width: 56ch;
+  color: var(--slate);
+}
+
+.section--ink .lede {
+  color: var(--slate-light);
+}
+
+.muted {
+  color: var(--slate);
+}
+
+.section--ink .muted {
+  color: var(--slate-light);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Section eyebrow: short azure rule + tracked uppercase label */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  margin: 0 0 var(--s4);
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 3px;
+  background: var(--azure);
+  flex: none;
+}
+
+.section--ink .eyebrow {
+  color: var(--slate-light);
+}
+
+.label {
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+/* --------------------------------------------------------------------------
+   Masthead — light, logo sits on its own white ground (no plate needed)
+   -------------------------------------------------------------------------- */
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow 0.25s var(--ease);
+}
+
+.masthead[data-scrolled="true"] {
+  box-shadow: 0 1px 16px var(--shadow-masthead);
+}
+
+.masthead__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s4);
+  min-height: 76px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  flex: none;
+}
+
+.brand img {
+  height: 30px;
+  width: auto;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--s5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav a {
+  position: relative;
+  display: block;
+  padding-block: 0.35rem;
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--slate);
+  transition: color 0.18s var(--ease);
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 3px;
+  background: var(--azure);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s var(--ease);
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  color: var(--ink);
+}
+
+.nav a:hover::after,
+.nav a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.nav a[aria-current="page"] {
+  color: var(--ink);
+}
+
+.nav a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.masthead__cta {
+  flex: none;
+}
+
+.nav-toggle {
+  display: none;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-toggle span,
+.nav-toggle span::before,
+.nav-toggle span::after {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 0.25s var(--ease), opacity 0.2s var(--ease);
+}
+
+.nav-toggle span::before,
+.nav-toggle span::after {
+  content: "";
+  position: absolute;
+}
+
+.nav-toggle span::before {
+  transform: translateY(-6px);
+}
+
+.nav-toggle span::after {
+  transform: translateY(6px);
+}
+
+.nav-toggle[aria-expanded="true"] span {
+  background: transparent;
+}
+
+.nav-toggle[aria-expanded="true"] span::before {
+  transform: rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span::after {
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 860px) {
+  .nav-toggle {
+    display: inline-flex;
+    position: relative;
+  }
+
+  /* Needs to out-specify `.btn`, which is declared later in the file. */
+  .masthead .masthead__cta {
+    display: none;
+  }
+
+  .nav {
+    position: fixed;
+    inset: 76px 0 0 0;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    padding: var(--s4) var(--s4) var(--s7);
+    background: var(--ink);
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.22s var(--ease), transform 0.28s var(--ease);
+    overflow-y: auto;
+  }
+
+  .nav.is-open {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .nav a,
+  .nav a[aria-current="page"] {
+    padding-block: var(--s4);
+    border-bottom: 1px solid var(--line-dark);
+    font-size: var(--t-body);
+    letter-spacing: 0.1em;
+    /* The panel is ink here, so the active link must reverse too — the
+       light-ground rule above would otherwise leave it dark-on-dark. */
+    color: var(--paper);
+  }
+
+  .nav a::after {
+    bottom: -1px;
+    height: 2px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  padding: 1.05em 2em;
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease),
+    border-color 0.2s var(--ease);
+}
+
+.btn svg {
+  width: 1.05em;
+  height: 1.05em;
+  flex: none;
+  transition: transform 0.25s var(--ease);
+}
+
+.btn:hover svg,
+.btn:focus-visible svg {
+  transform: translateX(4px);
+}
+
+.btn--primary {
+  background: var(--azure);
+  color: var(--ink-deep);
+  border-color: var(--azure);
+}
+
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.section--ink .btn--primary:hover,
+.section--ink .btn--primary:focus-visible,
+.hero .btn--primary:hover,
+.hero .btn--primary:focus-visible {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink-deep);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.section--ink .btn--ghost,
+.hero .btn--ghost {
+  color: var(--paper);
+  border-color: var(--line-dark-strong);
+}
+
+.section--ink .btn--ghost:hover,
+.section--ink .btn--ghost:focus-visible,
+.hero .btn--ghost:hover,
+.hero .btn--ghost:focus-visible {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink);
+}
+
+.btn--sm {
+  padding: 0.8em 1.4em;
+}
+
+/* Inline text link */
+.link {
+  color: var(--azure-deep);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  transition: color 0.18s var(--ease), border-color 0.18s var(--ease);
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--ink);
+}
+
+.section--ink .link,
+.hero .link {
+  color: var(--azure);
+}
+
+.section--ink .link:hover,
+.hero .link:hover {
+  color: var(--paper);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s3);
+}
+
+/* --------------------------------------------------------------------------
+   Hero — the first deep-navy anchor
+   -------------------------------------------------------------------------- */
+
+/* Deliberately a plain ink field. This is where the references put a
+   full-bleed live photograph, so it stays clear for one: type carries the
+   viewport until NPG supplies imagery, and no texture stands in for it. */
+.hero {
+  position: relative;
+  background: var(--ink);
+  color: var(--paper);
+  padding-block: var(--s9) var(--s8);
+  overflow: hidden;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.hero .display {
+  max-width: 16ch;
+  margin-bottom: var(--s5);
+}
+
+.hero .lede {
+  margin-bottom: var(--s6);
+}
+
+/* Hero proof line — real names, not restated claims. This replaced a fact
+   strip whose cells duplicated the lede sitting directly above it. */
+.hero__proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s3) var(--s6);
+  margin-top: var(--s8);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--line-dark);
+}
+
+.hero__proof > .label {
+  flex: none;
+  margin: 0;
+  color: var(--slate-light);
+}
+
+.hero__proof ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s2) var(--s5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero__proof li {
+  color: var(--paper);
+  font-size: var(--t-sm);
+}
+
+/* A hairline tick before each name — the accent as a marker, per DESIGN.md. */
+.hero__proof li::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 1px;
+  margin-right: 0.7em;
+  vertical-align: 0.28em;
+  background: var(--azure);
+}
+
+@media (max-width: 640px) {
+  .hero__proof {
+    gap: var(--s2);
+  }
+
+  .hero__proof ul {
+    flex-direction: column;
+    gap: var(--s2);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Row list — the system's primary content structure (replaces all cards)
+   -------------------------------------------------------------------------- */
+
+.rows {
+  border-top: 1px solid var(--line);
+}
+
+.section--ink .rows {
+  border-top-color: var(--line-dark);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr) minmax(0, 1.15fr) auto;
+  gap: var(--s4);
+  align-items: baseline;
+  padding-block: var(--s5);
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.28s var(--ease);
+}
+
+.section--ink .row {
+  border-bottom-color: var(--line-dark);
+}
+
+.row__index {
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--slate);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.22s var(--ease);
+}
+
+.row__title {
+  font-size: var(--t-h3);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+}
+
+.row__detail {
+  margin: 0;
+  font-size: var(--t-sm);
+  color: var(--slate);
+  max-width: 46ch;
+}
+
+.section--ink .row__detail {
+  color: var(--slate-light);
+}
+
+.row__meta {
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+a.row:hover,
+a.row:focus-visible {
+  transform: translateX(4px);
+}
+
+a.row:hover .row__index,
+a.row:focus-visible .row__index {
+  color: var(--azure-deep);
+}
+
+.row--pending .row__title {
+  color: var(--slate);
+}
+
+@media (max-width: 860px) {
+  .row {
+    grid-template-columns: 1fr auto;
+    gap: var(--s2) var(--s3);
+    padding-block: var(--s4);
+  }
+
+  .row__index {
+    grid-column: 1;
+  }
+
+  .row__meta {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .row__title,
+  .row__detail {
+    grid-column: 1 / -1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Capability blocks — the two lead disciplines
+   -------------------------------------------------------------------------- */
+
+.disciplines {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s6);
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 860px) {
+  .disciplines {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.discipline {
+  padding-top: var(--s5);
+}
+
+@media (max-width: 860px) {
+  .discipline {
+    padding-block: var(--s5);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .discipline:last-child {
+    border-bottom: none;
+  }
+}
+
+.discipline__index {
+  display: block;
+  margin-bottom: var(--s3);
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--azure-deep);
+  font-variant-numeric: tabular-nums;
+}
+
+.discipline h3 {
+  margin-bottom: var(--s3);
+  font-size: var(--t-subhead);
+  font-weight: 400;
+  letter-spacing: -0.012em;
+}
+
+.discipline p {
+  color: var(--slate);
+  max-width: 44ch;
+}
+
+.discipline__list {
+  margin: var(--s4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.discipline__list li {
+  padding-block: 0.55rem;
+  border-top: 1px solid var(--line);
+  font-size: var(--t-sm);
+  color: var(--slate);
+}
+
+/* An aside for the on-request services — deliberately quiet */
+.aside-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s2) var(--s4);
+  margin-top: var(--s7);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--line);
+  font-size: var(--t-sm);
+  color: var(--slate);
+}
+
+.aside-note strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.section--ink .aside-note {
+  border-top-color: var(--line-dark);
+  color: var(--slate-light);
+}
+
+.section--ink .aside-note strong {
+  color: var(--paper);
+}
+
+/* --------------------------------------------------------------------------
+   Media slot — honest placeholder until real photography arrives
+   -------------------------------------------------------------------------- */
+
+.media-slot {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--paper-tint-2);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-slot span {
+  font-size: var(--t-micro);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.media-slot--dark {
+  background: var(--ink-raised);
+  border-color: var(--line-dark);
+}
+
+.media-slot--dark span {
+  color: var(--slate-light);
+}
+
+/* --------------------------------------------------------------------------
+   Crew
+   -------------------------------------------------------------------------- */
+
+.crew {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s6);
+}
+
+@media (max-width: 860px) {
+  .crew {
+    grid-template-columns: 1fr;
+    gap: var(--s6);
+  }
+}
+
+.crew__member .media-slot {
+  aspect-ratio: 4 / 5;
+  margin-bottom: var(--s4);
+}
+
+.crew__role {
+  margin: 0 0 var(--s2);
+  font-size: var(--t-h3);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.crew__meta {
+  margin: 0;
+  font-size: var(--t-sm);
+  color: var(--slate);
+}
+
+/* --------------------------------------------------------------------------
+   Enquiry form
+   -------------------------------------------------------------------------- */
+
+.form {
+  display: grid;
+  gap: var(--s5);
+}
+
+.form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s5);
+}
+
+@media (max-width: 640px) {
+  .form__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+
+.field--full {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.9em 1em;
+  font-family: inherit;
+  font-size: var(--t-body);
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  transition: border-color 0.18s var(--ease), box-shadow 0.18s var(--ease);
+}
+
+.field textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--azure);
+  border-width: 2px;
+  padding: calc(0.9em - 1px) calc(1em - 1px);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.field .error {
+  display: none;
+  font-size: var(--t-micro);
+  letter-spacing: 0.06em;
+  color: var(--state-error);
+}
+
+.field.has-error .error {
+  display: block;
+}
+
+.field.has-error input,
+.field.has-error select,
+.field.has-error textarea {
+  border-color: var(--state-error);
+}
+
+.form__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s4);
+  padding-top: var(--s3);
+  border-top: 1px solid var(--line);
+}
+
+.form__status {
+  margin: 0;
+  font-size: var(--t-sm);
+  color: var(--slate);
+  min-height: 1.4em;
+  max-width: 46ch;
+}
+
+.form__status[data-state="error"] {
+  color: var(--state-error);
+}
+
+.form__status[data-state="success"] {
+  color: var(--state-success);
+}
+
+/* Direct contact rows */
+.contact-direct {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s5);
+  margin-top: var(--s7);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 780px) {
+  .contact-direct {
+    grid-template-columns: 1fr;
+    gap: var(--s4);
+  }
+}
+
+.contact-direct dt {
+  margin-bottom: var(--s2);
+  font-size: var(--t-micro);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.contact-direct dd {
+  margin: 0;
+  font-size: var(--t-sm);
+}
+
+.contact-direct a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 2px;
+  transition: border-color 0.18s var(--ease), color 0.18s var(--ease);
+}
+
+.contact-direct a:hover,
+.contact-direct a:focus-visible {
+  color: var(--azure-deep);
+  border-color: var(--azure-deep);
+}
+
+/* --------------------------------------------------------------------------
+   Call-to-action band (the one permitted third dark band)
+   -------------------------------------------------------------------------- */
+
+.cta-band {
+  background: var(--ink);
+  color: var(--paper);
+  padding-block: var(--s8);
+}
+
+.cta-band .headline {
+  max-width: 20ch;
+  margin-bottom: var(--s5);
+}
+
+/* --------------------------------------------------------------------------
+   Footer — the second deep-navy anchor
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  background: var(--ink-deep);
+  color: var(--paper);
+  padding-block: var(--s7) var(--s5);
+}
+
+.site-footer__top {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: var(--s6);
+  padding-bottom: var(--s6);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+@media (max-width: 860px) {
+  .site-footer__top {
+    grid-template-columns: 1fr;
+    gap: var(--s5);
+  }
+}
+
+.site-footer__cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s5);
+}
+
+@media (max-width: 640px) {
+  .site-footer__cols {
+    grid-template-columns: 1fr;
+    gap: var(--s4);
+  }
+}
+
+.site-footer h2 {
+  font-size: var(--t-micro);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate-light);
+  margin-bottom: var(--s3);
+}
+
+.site-footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--s2);
+}
+
+.site-footer a {
+  font-size: var(--t-sm);
+  text-decoration: none;
+  color: var(--paper);
+  transition: color 0.18s var(--ease);
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--azure);
+}
+
+.site-footer__mark {
+  font-size: var(--t-mark);
+  font-weight: 300;
+  font-stretch: 112%;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: var(--s3);
+}
+
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding-top: var(--s5);
+  font-size: var(--t-micro);
+  letter-spacing: 0.06em;
+  color: var(--slate-light);
+}
+
+/* --------------------------------------------------------------------------
+   Page header (interior pages)
+   -------------------------------------------------------------------------- */
+
+.page-head {
+  background: var(--ink);
+  color: var(--paper);
+  padding-block: var(--s8) var(--s7);
+}
+
+.page-head .display {
+  max-width: 18ch;
+  margin-bottom: var(--s4);
+}
+
+/* --------------------------------------------------------------------------
+   Motion — one authored moment. Content is visible unless JS opts in.
+   -------------------------------------------------------------------------- */
+
+[data-reveal="on"] .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+[data-reveal="on"] .reveal.is-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s var(--ease), transform 0.7s var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Keep colour/state feedback; drop movement and reveals. */
+  [data-reveal="on"] .reveal,
+  [data-reveal="on"] .reveal.is-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .btn svg,
+  a.row,
+  .nav a::after {
+    transition: none !important;
+  }
+
+  a.row:hover,
+  a.row:focus-visible {
+    transform: none;
+  }
+
+  .btn:hover svg,
+  .btn:focus-visible svg {
+    transform: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Dark surfaces — every deep-navy context, handled in one place.
+   Kept last so it settles specificity ties with the base rules above.
+   Secondary text must step up to --slate-light here: --slate is 3.4:1 on ink.
+   -------------------------------------------------------------------------- */
+
+.hero .lede,
+.section--ink .lede,
+.cta-band .lede,
+.page-head .lede,
+.hero .muted,
+.section--ink .muted,
+.cta-band .muted,
+.page-head .muted,
+.site-footer .muted,
+.hero .eyebrow,
+.section--ink .eyebrow,
+.cta-band .eyebrow,
+.page-head .eyebrow,
+.hero .label,
+.section--ink .label,
+.cta-band .label,
+.page-head .label,
+.hero .row__detail,
+.section--ink .row__detail,
+.cta-band .row__detail,
+.page-head .row__detail {
+  color: var(--slate-light);
+}
+
+.hero .rows,
+.section--ink .rows,
+.cta-band .rows,
+.page-head .rows {
+  border-top-color: var(--line-dark);
+}
+
+.hero .row,
+.section--ink .row,
+.cta-band .row,
+.page-head .row {
+  border-bottom-color: var(--line-dark);
+}
+
+.hero .aside-note,
+.section--ink .aside-note,
+.cta-band .aside-note,
+.page-head .aside-note {
+  border-top-color: var(--line-dark);
+  color: var(--slate-light);
+}
+
+.hero .aside-note strong,
+.section--ink .aside-note strong,
+.cta-band .aside-note strong,
+.page-head .aside-note strong {
+  color: var(--paper);
+}
+
+.hero .link,
+.section--ink .link,
+.cta-band .link,
+.page-head .link,
+.site-footer .link {
+  color: var(--azure);
+}
+
+.hero .link:hover,
+.section--ink .link:hover,
+.cta-band .link:hover,
+.page-head .link:hover,
+.site-footer .link:hover {
+  color: var(--paper);
+}
+
+.hero .btn--ghost,
+.section--ink .btn--ghost,
+.cta-band .btn--ghost,
+.page-head .btn--ghost,
+.site-footer .btn--ghost {
+  color: var(--paper);
+  border-color: var(--line-dark-strong);
+}
+
+.hero .btn--ghost:hover,
+.hero .btn--ghost:focus-visible,
+.section--ink .btn--ghost:hover,
+.section--ink .btn--ghost:focus-visible,
+.cta-band .btn--ghost:hover,
+.cta-band .btn--ghost:focus-visible,
+.page-head .btn--ghost:hover,
+.page-head .btn--ghost:focus-visible,
+.site-footer .btn--ghost:hover,
+.site-footer .btn--ghost:focus-visible {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink);
+}
+
+.hero .btn--primary:hover,
+.hero .btn--primary:focus-visible,
+.section--ink .btn--primary:hover,
+.section--ink .btn--primary:focus-visible,
+.cta-band .btn--primary:hover,
+.cta-band .btn--primary:focus-visible,
+.page-head .btn--primary:hover,
+.page-head .btn--primary:focus-visible {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink-deep);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--s3);
+  top: -60px;
+  z-index: 100;
+  padding: 0.75em 1.25em;
+  background: var(--azure);
+  color: var(--ink-deep);
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: top 0.2s var(--ease);
+}
+
+.skip-link:focus {
+  top: var(--s3);
+}

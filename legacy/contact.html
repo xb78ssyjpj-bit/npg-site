@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Nuages Production Group</title>
+  <meta name="description" content="Tell Nuages Production Group what you're making — live recording, content shoots, or a touring and live-event request." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="masthead">
+    <div class="container masthead__inner">
+      <a class="brand" href="index.html" aria-label="Nuages Production Group — home">
+        <img src="assets/npg-mark.png" alt="Nuages Production Group" />
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span></button>
+      <ul class="nav" id="nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="bio.html">Crew</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+      <a class="btn btn--primary btn--sm masthead__cta" href="#enquiry">Send a brief</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="container">
+        <p class="eyebrow">Contact</p>
+        <h1 class="display">Send us a brief.</h1>
+        <p class="lede">Tell us what you're making and roughly when. You don't need to know the technical side — that's our job. We'll come back and tell you straight whether it's one for us.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="split">
+          <div>
+            <p class="eyebrow">Enquiry</p>
+            <p class="muted" style="font-size: var(--t-sm); max-width: 32ch;">Everything here goes straight to the three of us. Expect a reply from a person, not an autoresponder.</p>
+          </div>
+
+          <form class="form" id="enquiry" data-mailto="info@nuagesproductiongroup.co.uk" novalidate>
+            <div class="form__grid">
+              <div class="field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required autocomplete="name" data-required="We need a name to reply to." />
+                <small class="error"></small>
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required autocomplete="email" data-required="We need an email to reply to." />
+                <small class="error"></small>
+              </div>
+              <div class="field">
+                <label for="phone">Phone <span class="muted">(optional)</span></label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" />
+              </div>
+              <div class="field">
+                <label for="service">What do you need?</label>
+                <select id="service" name="service" required data-required="Pick one so we know who picks this up.">
+                  <option value="" disabled selected>Choose one</option>
+                  <option>Live recording</option>
+                  <option>Content shoot</option>
+                  <option>Both</option>
+                  <option>Touring dry hire (on request)</option>
+                  <option>Live event production (on request)</option>
+                  <option>Something else</option>
+                </select>
+                <small class="error"></small>
+              </div>
+              <div class="field field--full">
+                <label for="message">The brief</label>
+                <textarea id="message" name="message" required data-required="Give us a line or two to work with." placeholder="Dates, venue or location, what you're trying to make, and a budget range if you have one."></textarea>
+                <small class="error"></small>
+              </div>
+            </div>
+
+            <div class="form__footer">
+              <button type="submit" class="btn btn--primary">
+                Send brief
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+              </button>
+              <p class="form__status" role="status"></p>
+            </div>
+          </form>
+        </div>
+
+        <dl class="contact-direct">
+          <div>
+            <dt>Email</dt>
+            <dd><a href="mailto:info@nuagesproductiongroup.co.uk">info@nuagesproductiongroup.co.uk</a></dd>
+          </div>
+          <div>
+            <dt>Phone</dt>
+            <dd><a class="tabular" href="tel:+447946200720">+44 7946 200720</a></dd>
+          </div>
+          <div>
+            <dt>Instagram</dt>
+            <dd><a href="https://instagram.com/nuagesproductiongroup" target="_blank" rel="noopener">@nuagesproductiongroup</a></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__top">
+        <div>
+          <p class="site-footer__mark">Nuages<br />Production Group</p>
+          <p class="muted" style="font-size: var(--t-sm); max-width: 32ch;">Live recording and content shoots for artists. Manchester, UK.</p>
+        </div>
+        <div class="site-footer__cols">
+          <div>
+            <h2>Pages</h2>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="work.html">Work</a></li>
+              <li><a href="bio.html">Crew</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2>Contact</h2>
+            <ul>
+              <li><a href="mailto:info@nuagesproductiongroup.co.uk">info@nuagesproductiongroup.co.uk</a></li>
+              <li><a href="tel:+447946200720" class="tabular">+44 7946 200720</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2>Follow</h2>
+            <ul>
+              <li><a href="https://instagram.com/nuagesproductiongroup" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© 2026 Nuages Production Group</span>
+        <span>Manchester, United Kingdom</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>
