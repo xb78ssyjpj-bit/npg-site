@@ -1,58 +1,117 @@
 ---
 name: Nuages Production Group
-description: Manchester live-recording and content-shoot specialists — a precise, blue-ink technical register drawn from the brand mark
+description: A cyanotype schematic — technical drawing rendered as a photographic blue print, suspended in a drifting cloud field
 colors:
   azure: "#00A0FF"
-  azure-deep: "#0072B8"
-  azure-tint: "#E6F5FF"
-  ink: "#071B2B"
-  ink-deep: "#04121D"
-  ink-raised: "#0E2A3F"
-  slate: "#5A7183"
-  slate-light: "#8FA3B3"
-  paper: "#FFFFFF"
-  paper-tint: "#F2F6FA"
-  paper-tint-2: "#E7EEF4"
-  state-error: "#B3261E"
-  state-success: "#1F6B3B"
+  azure-pale: "#7FCFFF"
+  azure-deep: "#0E4E7A"
+  ink: "#071522"
+  ink-abyss: "#03080F"
+  prussian: "#0A2942"
+  prussian-raised: "#10344F"
+  paper: "#EAF4FB"
+  paper-plate: "#DCE9F2"
+  paper-dim: "#A8C4D8"
+  slate: "#8BA6BD"
+  state-error: "#FF6B5A"
+  state-success: "#5BD6A0"
 typography:
   display:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "clamp(2.5rem, 6.5vw, 5.75rem)"
-    fontWeight: 300
-    lineHeight: 1.02
-    letterSpacing: "-0.02em"
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "clamp(2.75rem, 7vw, 5.5rem)"
+    fontWeight: 700
+    fontStretch: "125%"
+    lineHeight: 0.96
+    letterSpacing: "-0.03em"
   headline:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "clamp(1.9rem, 4vw, 3.4rem)"
-    fontWeight: 300
-    lineHeight: 1.06
-    letterSpacing: "-0.015em"
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "clamp(1.75rem, 3.6vw, 3rem)"
+    fontWeight: 600
+    fontStretch: "112%"
+    lineHeight: 1.04
+    letterSpacing: "-0.02em"
   subhead:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "clamp(1.35rem, 2.4vw, 1.9rem)"
-    fontWeight: 400
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "clamp(1.3rem, 2.4vw, 1.9rem)"
+    fontWeight: 600
+    fontStretch: "108%"
     lineHeight: 1.15
+    letterSpacing: "-0.015em"
+  displaySmall:
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "clamp(2.25rem, 5.5vw, 4.25rem)"
+    fontWeight: 700
+    fontStretch: "125%"
+    lineHeight: 0.98
+    letterSpacing: "-0.03em"
+  creditName:
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "clamp(1.15rem, 2vw, 1.5rem)"
+    fontWeight: 600
+    fontStretch: "104%"
+    lineHeight: 1.15
+    letterSpacing: "-0.015em"
+  markLarge:
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "clamp(1.6rem, 3vw, 2.2rem)"
+    fontWeight: 700
+    fontStretch: "128%"
+    letterSpacing: "0.02em"
   title:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "clamp(1.15rem, 1.8vw, 1.45rem)"
-    fontWeight: 500
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "clamp(1.05rem, 1.6vw, 1.3rem)"
+    fontWeight: 600
     lineHeight: 1.25
   body:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
-    lineHeight: 1.65
+    lineHeight: 1.6
   lede:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "clamp(1.05rem, 1.5vw, 1.3rem)"
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "clamp(1.05rem, 1.4vw, 1.25rem)"
     fontWeight: 400
     lineHeight: 1.5
-  label:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "0.75rem"
+  annotation:
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "0.7rem"
     fontWeight: 500
+    fontStretch: "88%"
+    letterSpacing: "0.16em"
+  mark:
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "1.5rem"
+    fontWeight: 700
+    fontStretch: "128%"
+    letterSpacing: "0.02em"
+  control:
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "0.75rem"
+    fontWeight: 600
+    fontStretch: "96%"
     letterSpacing: "0.14em"
+  detail:
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "0.9375rem"
+    fontWeight: 400
+    lineHeight: 1.55
+  caption:
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 400
+    lineHeight: 1.55
+  micro:
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "0.625rem"
+    fontWeight: 600
+    fontStretch: "88%"
+    letterSpacing: "0.16em"
+  wordmark:
+    fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "0.5rem"
+    fontWeight: 500
+    fontStretch: "88%"
+    letterSpacing: "0.32em"
 spacing:
   s1: "0.5rem"
   s2: "0.75rem"
@@ -63,146 +122,158 @@ spacing:
   s7: "4.5rem"
   s8: "7rem"
   s9: "10rem"
-components:
-  button-primary:
-    backgroundColor: "{colors.azure}"
-    textColor: "{colors.ink-deep}"
-    padding: "1.05em 2em"
-  button-primary-hover:
-    backgroundColor: "{colors.paper}"
-  button-ghost:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    padding: "1em 2em"
 ---
 
 # Design System: Nuages Production Group
 
 ## Overview
 
-**Creative North Star: "The Technical Register"**
+**Creative North Star: "The Cyanotype Schematic"**
 
-NPG is presented the way serious touring-production companies present themselves: quiet, precise, and engineered, with the work and the credits doing the persuading rather than any costume. The system is drawn directly from the brand mark — the logo is pure black with a single bright azure (`#00A0FF`), and that azure is the only accent the site uses. Deep navy ink anchors the page at the top and bottom; the body of the site is light, open, and disciplined, built from navy tinted down to a few percent rather than neutral greys, so even the pale surfaces stay in the brand's colour family.
+The world is the **cyanotype** — the photographic blue print. It is the one material that belongs to both halves of what NPG is: it is a *photographic process* (they make images) and it is the ancestor of the *engineering blueprint* (they solve technical problems). Its colour is, by chemistry, the brand's azure. Its characteristic chemical mottle is the same blue noise texture already sitting inside the logo. Nothing here is borrowed decoration; every part of it is already true about the subject.
 
-Structure carries the weight: a strict grid, hairline rules, generous vertical space, one typeface used across four widths and weights, and numerals set as real tabular data. Persuasion comes from a credit list and plainly-stated capability, which is how this category earns trust.
+So the site is a technical drawing, exposed as a blue print, suspended in a drifting field of cloud — *nuages*. Pale linework and annotation float on deep Prussian ink. A live signal path runs through the page as its structural spine, branching from one shared technical trunk into the different things NPG delivers.
 
-This replaces an earlier near-black-and-safety-orange "road case" world. That direction was retired deliberately: the orange existed nowhere in the brand, and the flight-case metaphor read as costume rather than identity.
+This **replaces** the previous "Technical Register" world — a light page, navy anchors, Archivo Light, hairline rows. That direction was retired at the client's instruction: it had no memorable idea, its row lists left half the page empty, and its light-weight display type read as a category default rather than as NPG.
 
-Key Characteristics:
-- Light-dominant page, anchored by two deep-navy bands (masthead/hero and footer) — never relentlessly dark
-- Exactly one accent, `#00A0FF`, taken from the logo and used as a marker, never as a field
-- One typeface (Archivo, variable width + weight) doing display, body, and label duty — cohesion by restraint
-- Hairline rules and a visible grid instead of cards, borders, textures, or containers
-- Large headlines set **light-weight**, not bold — scale supplies the emphasis
+Key characteristics:
+- **Dark-dominant**, because a cyanotype *is* dark. One pale plate section provides the counter-beat.
+- The **signal path is architecture, not illustration** — it carries the argument and replaces three sections of prose.
+- **Drifting noise is the ground**, not an overlay effect: an authored, animated field, frozen under `prefers-reduced-motion`.
+- **One typeface** across display, body, and annotation, using a real width axis.
+- Linework, nodes, traces, and annotation instead of cards.
 
 ## Colors
 
-Palette strategy: Restrained. A near-neutral light page, two deep navy anchors, and a single saturated azure marker. The light ground is correct for the scene: this site is read in daylight, on a phone or a laptop, by an artist or a manager deciding whether to send a brief — not in the room where the work happens.
+Strategy: **Committed.** Blue owns the surface. This is not neutrals-plus-an-accent — the ground itself is the brand colour, darkened, and the azure is what light does inside it.
 
-### Primary
-- **Azure** (`#00A0FF`): sampled directly from the logo's wordmark. Used for the rule above section labels, the active nav marker, the primary button fill, focus rings, and inline link underlines on dark grounds. Never a background field, never a large area.
-- **Azure Deep** (`#0072B8`): the same accent stepped down for small text and links **on light grounds only**, where the bright azure fails contrast (`#00A0FF` on white is 2.8:1 and is never used for text there).
-- **Azure Tint** (`#E6F5FF`): the one permitted azure surface — a very pale wash behind a highlighted table row or a note.
+The scene forces dark: the subject is rooms, stages, and load-ins, and the page's central object is a luminous signal tracing through a cloud. A pale ground would make the trace invisible and the concept mute.
 
-### Neutral
-- **Ink** (`#071B2B`): the primary deep-navy ground for the hero and dark bands.
-- **Ink Deep** (`#04121D`): the footer and the deepest step.
-- **Ink Raised** (`#0E2A3F`): a raised panel or input on a dark ground.
-- **Slate** (`#5A7183`): secondary text on light (5.1:1 on white).
-- **Slate Light** (`#8FA3B3`): secondary text on dark (6.7:1 on Ink).
-- **Paper** (`#FFFFFF`) / **Paper Tint** (`#F2F6FA`) / **Paper Tint 2** (`#E7EEF4`): the light surfaces. The tints are navy mixed down to a few percent, never a neutral grey — this is what keeps the pale sections in the family.
+### Ground
+- **Ink Abyss** (`#03080F`) — the deepest step. Page ends and the field's far depth.
+- **Ink** (`#071522`) — the primary ground.
+- **Prussian** (`#0A2942`) — the cloud body; the mid-depth the noise field resolves toward.
+- **Prussian Raised** (`#10344F`) — inputs, an active node's fill, a raised annotation panel.
 
-### Named Rules
-**The Marker Rule.** Azure marks; it never fills. It appears as a rule, an underline, a small square, a focus ring, or one button — and it never occupies more than a few percent of any viewport. If a whole band or a whole set of items has gone azure, the rule is already broken.
+### Signal
+- **Azure** (`#00A0FF`) — the trace, the live pulse, the primary button, the focus ring. On dark it may run as a *line and a field*; this world's azure is light, and light is allowed to be bright.
+- **Azure Pale** (`#7FCFFF`) — azure as text on dark grounds, and the trace's hot core.
+- **Azure Deep** (`#0E4E7A`) — the dormant trace, unlit branches, hairlines on dark.
 
-**The Two-Anchor Rule.** A page carries at most two deep-navy bands: the hero at the top and the footer at the bottom (a third is permitted only for a single full-width call-to-action). Everything between them is light. The earlier all-dark page is the failure state this rule exists to prevent.
+### Print
+- **Paper** (`#EAF4FB`) — primary text on dark. Never pure white; a cyanotype's highlight is paper, and paper is slightly blue here.
+- **Paper Plate** (`#DCE9F2`) — the ground of the one pale section.
+- **Paper Dim** (`#A8C4D8`) — secondary text on dark (≈9.5:1 on Ink).
+- **Slate** (`#8BA6BD`) — annotation and tertiary text on dark. Its value is set by The Ceiling Rule below, not by taste: it is the dimmest tone that still clears 4.5:1 against the brightest patch the cloud field can produce (4.66:1).
 
-**The Tinted-Neutral Rule.** Light surfaces are navy at 2–8%, never `#F5F5F5` or any pure grey.
+### Named rules
+**The Exposure Rule.** Azure is *light in a dark room*. It may glow, bloom, and diffuse — that is what the material does — but it never becomes a flat filled panel with text on top. If azure is acting as a background swatch rather than as light, the rule is broken.
+
+**The One-Plate Rule.** Exactly one section in the page runs pale (`paper-plate`), and it is the credit list, set as a contact sheet. A second pale section breaks the print.
+
+**The Ceiling Rule.** The cloud field's palette tops out at `#0F3A5C`, and every text tone is chosen against *that* value rather than against the flat `--ink` ground. The field drifts, so any text can end up over its brightest patch; designing against the flat ground is how a moving background quietly fails contrast. Raising the ceiling means re-deriving `--slate`.
+
+**The Blue-Neutral Rule.** There are no greys and no pure blacks or whites anywhere. Every neutral is blue-shifted. `#FFFFFF`, `#000000`, and any `#RRGGBB` with equal channels are out.
 
 ## Typography
 
-**Everything is Archivo** (variable, width 62–125, weight 300–700), with fallbacks `Helvetica Neue, Arial, sans-serif`. One family is the cohesion mechanism: width, weight, case, and tracking do all the work that a second and third typeface used to do. The previous system ran a stencil face, a mono, and a handwriting script simultaneously; all three are gone.
+**Everything is Anybody** (variable: `wdth` 50–150, `wght` 100–900), fallbacks `Archivo, Helvetica Neue, Arial, sans-serif`. One family is the cohesion mechanism — the previous build's incoherence came not from font *count* but from a single weight doing every job. Here the width axis does the work a second and third face would otherwise do: expanded and heavy for display, condensed and tracked for drawing-office annotation, normal for reading.
 
-**Character:** a broad, engineered American grotesk with excellent tabular numerals — it reads as signage and specification rather than as fashion, which is exactly the register this category speaks in.
+**Character:** an engineered, technical grotesk with an unusually wide width range — it reads as signage, instrument panel, and drawing-office lettering rather than as a UI default.
 
 ### Hierarchy
-- **Display** (`wdth 112`, weight **300**, `clamp(2.5rem, 6.5vw, 5.75rem)`, tracking `-0.02em`): the hero statement only. Set light, never bold.
-- **Headline** (`wdth 108`, weight 300, `clamp(1.9rem, 4vw, 3.4rem)`): section openers.
-- **Subhead** (weight 400, `clamp(1.35rem, 2.4vw, 1.9rem)`): the one step between headline and title — discipline headings, which must out-rank a title without reading as a section opener.
-- **Mark** (weight 300, `wdth 112`, `clamp(1.6rem, 3vw, 2.2rem)`): the footer wordmark only. It sits one step above Subhead deliberately — it is the brand signature closing the page, not a section heading, and collapsing the two flattens that hierarchy.
-- **Title** (weight 500, `clamp(1.15rem, 1.8vw, 1.45rem)`): item-level headings.
-- **Lede** (weight 400, `clamp(1.05rem, 1.5vw, 1.3rem)`, measure ≤ 58ch): one intro paragraph per section.
-- **Body** (weight 400, `1rem`, line-height 1.65, measure 62–68ch).
-- **Label** (`wdth 100`, weight 500, `0.75rem`, tracking `0.14em`, uppercase): eyebrows, table headers, meta. Always preceded by a short azure rule when used as a section eyebrow.
-- **Data** (weight 400, `font-variant-numeric: tabular-nums`): years, counts, spec figures. Tabular figures are mandatory anywhere numerals column up.
+- **Display** (`wdth 125`, weight 700, `clamp(2.75rem, 7vw, 5.5rem)`, tracking `-0.03em`): the hero line only. Set **wide and heavy** — the field behind it is busy, and light type would dissolve into the cloud. This deliberately inverts the retired system's Light-Display rule.
+- **Headline** (`wdth 112`, weight 600): section openers.
+- **Subhead** (`wdth 108`, weight 600, `clamp(1.3rem, 2.4vw, 1.9rem)`): the panel's claim line — the one step between headline and title.
+- **Display Small** (`clamp(2.25rem, 5.5vw, 4.25rem)`): the closing statement, one step under the hero so the page ends firmly without competing with its opening.
+- **Title** (`wdth 100`, weight 600): node names and item headings. **Credit Name** (`wdth 104`, `clamp(1.15rem, 2vw, 1.5rem)`) is its counterpart on the pale plate, set larger because the credits are the section's whole content.
+- **Mark Large** (`wdth 128`, weight 700, `clamp(1.6rem, 3vw, 2.2rem)`): the footer sign-off only. It sits a step above the masthead Mark deliberately — it closes the page rather than labelling it.
+- **Lede** (weight 400, measure ≤ 56ch): one intro paragraph per section.
+- **Body** (weight 400, line-height 1.6, measure 62–70ch).
+- **Annotation** (`wdth 88`, weight 500, `0.7rem`, tracking `0.16em`, uppercase): node indices, channel labels, schematic callouts, meta. This is the drawing-office register and it is the *only* place tracked uppercase appears.
+- **Mark** (`wdth 128`, weight 700, `1.5rem`): the redrawn NPG monogram in the masthead and footer. The **Wordmark** beneath it (`wdth 88`, weight 500, `0.5rem`, tracking `0.32em`) is the only text permitted below annotation scale, and only as part of the lockup.
+- **Control** (`wdth 96`, weight 600, `0.75rem`, tracking `0.14em`, uppercase): button and nav labels.
+- **Detail** (`0.9375rem`) / **Caption** (`0.875rem`): supporting text below body scale — contact values, branch notes, figure captions.
+- **Micro** (`wdth 88`, weight 600, `0.625rem`, tracking `0.16em`, uppercase): title-block rows, node indices, status chips. Annotation on a drawing; never prose.
+- **Data** (`font-variant-numeric: tabular-nums`): mandatory anywhere figures column up.
 
-### Named Rules
-**The Light-Display Rule.** Display and headline sizes are set at weight 300. Emphasis comes from size and space. A bold headline at display size is a category default this system rejects.
+### Named rules
+**The Heavy-Display Rule.** Display type is wide and heavy. It has to hold its own against a moving field; scale alone will not do it here.
 
-**The One-Family Rule.** No second typeface is added for "technical" or "personality" reasons. If something needs to read as data, use tabular numerals and tracking, not a monospace costume.
+**The One-Family Rule.** No second face is added. A monospace for "technical feel" is specifically refused — the technical register comes from width, tracking, case, and tabular figures, which is how real drawing-office lettering achieves it.
+
+**The Annotation-Scarcity Rule.** Tracked uppercase belongs to the schematic. It is not a generic section eyebrow — a kicker over every section is grammar nobody chose.
 
 ## Layout
 
-A 12-column grid inside a 1240px container with 24px gutters (16px under 640px). Sections are separated by vertical space and hairline rules, not by boxes: the system has no card component and does not draw containers around content.
+A 12-column grid in a 1280px container, 24px gutters (16px under 640px). The page's structural device is the **trace**: a continuous 1px azure-deep line that enters at the masthead and runs the full length of the document, moving between columns, passing through nodes, and branching. Sections do not sit in boxes; they hang off the trace.
 
-Page rhythm alternates deliberately — a dark hero, then a long light passage of alternating white and tinted bands, then a dark footer. Content sits on the grid asymmetrically (a section label in a narrow left column, content in a wide right column) rather than centred, which is what gives the page its engineered feel. Section headings carry more space above than below.
+Scroll pacing runs: **dense luminous hero → the spine, wide and interactive → a hard black comparison band → the pale plate → a quiet close.** Density and value alternate deliberately; a dense passage earns a quiet one.
 
-Editorial lists — credits, capability, crew — are **rows with hairline separators**, aligned to the grid and reading left-to-right as label → subject → detail → year. On narrow screens rows restack to a single column and keep their hairlines; nothing becomes a card.
+## The Signal Path (signature component)
+
+The page's spine and its main argument. A single technical trunk of five stages that then **branches** into outputs — which is how the site says "content is one of the things we do, not the whole of what we are."
+
+- **Trunk stages:** `THE PROBLEM → THE DESIGN → THE RIG → THE DAY → THE HANDOVER`
+- **Branches:** live record, film, live event, dry hire, system design.
+- **Rest state:** the whole path is drawn in `azure-deep`, dormant. It is legible with nothing selected.
+- **Live state:** the selected node fills `prussian-raised` with an azure rim; the trunk up to it lights `azure`; a pulse travels the lit segment.
+- **Interaction:** hover and click on pointer devices; roving arrow-key focus for keyboard; nodes are real `<button>`s in a labelled group. The detail panel is a live region.
+- **Motion:** the pulse is the page's one authored moment. Under `prefers-reduced-motion` the path lights instantly with no travel and the cloud field freezes.
+- **Mobile:** the path rotates to vertical and the detail panel drops beneath the selected node. It never becomes a card list.
+
+## The Cloud Field
+
+An animated fBm noise field on `<canvas>`, tinted between `ink` and `prussian` with azure blooming where the field is densest. It is rendered at quarter resolution into an offscreen buffer and scaled up — the softness is the point, and it keeps the cost near zero. Capped at 30fps, paused when off-screen or when the tab is hidden, frozen (one static frame) under `prefers-reduced-motion`.
+
+It is a **material, not a backdrop effect**: it may darken toward the page edges and bloom behind the trace, but it never runs beneath body copy at a density that costs contrast.
 
 ## Elevation & Depth
 
-The system is flat by intention. There is no shadow ramp, no elevation scale, and no raised surfaces. Depth is expressed as **tonal layering** — white against tinted navy against deep navy — and as hairline rules that define planes. The one permitted shadow is a soft ambient shadow beneath the sticky masthead once the page has scrolled, so the header separates from content in motion; it is a functional cue, not decoration.
+Depth is **atmospheric**, not architectural. Things recede by getting bluer, softer, and lower-contrast — the way a light does in fog. There is no shadow ramp and no card lift.
 
-### Named Rules
-**The No-Shadow Rule.** If a surface needs separating, change its tone or draw a hairline. Do not lift it.
+The one permitted shadow is a broad azure bloom behind a live trace or an active node: large blur, no offset, low alpha. This is the single exception to the general ban on zero-offset halos, and it exists because the world is literally about light diffusing through cloud.
 
 ## Shapes
 
-Square. Corner radius is `0` throughout — buttons, inputs, image slots, and tables. The only curved elements permitted are genuinely circular: the focus ring's dot marker and any circular avatar. Rules are `1px` hairlines at 10–14% ink on light, 12–16% white on dark. A 3px azure rule marks section eyebrows and the active nav item.
+Square. Radius `0` everywhere except genuinely circular things: node dots, the pulse, focus dots. Rules are 1px in `azure-deep` or paper at 12–16% alpha. Corners on the schematic are drawn as right angles with a small chamfer, as a drawing would.
 
 ## Components
 
 ### Buttons
-- **Shape:** square, no radius, generous horizontal padding.
-- **Primary:** azure fill, ink-deep text, weight 500, tracking `0.06em`. On hover it inverts to paper fill with ink text. No shadow, no lift, no scale.
-- **Ghost:** transparent with a 1px ink hairline; hover fills ink and reverses the text. On dark grounds the hairline and text are white.
+- Square, generous horizontal padding, annotation-scale tracked uppercase.
+- **Primary:** azure fill, `ink-abyss` text, weight 600. Hover raises to `azure-pale` and widens the bloom. No lift, no scale.
+- **Ghost:** transparent, 1px `azure-deep` rule, paper text. Hover lifts the rule to azure and the text to `azure-pale`.
 
-### Navigation
-- **Style:** a light masthead — white, with the logo at its natural white background so no plate or chip is needed behind it. Links are label-scale uppercase, tracked, in slate; the active page is ink with a 3px azure rule beneath it. A single primary button sits at the right end.
-- **Mobile:** collapses below 860px to a full-height ink panel with large, generously-spaced links.
+### Credit plate (the one pale section)
+The credit list, set as a cyanotype contact sheet: `paper-plate` ground, ink linework, entries as rows with hairline separators reading name → discipline → year. This is the section the client explicitly asked to keep. The monogram is **redrawn in type** across the site (client's decision), so it takes any colour and the black master artwork is not used in the build. Should that master ever be placed, this plate is the only ground it is legal on — everywhere else is dark.
 
-### Row List (signature component)
-- The system's primary content structure, replacing all card grids. A grid row with a hairline top border: a tracked label or index in a narrow column, the subject as a title, supporting detail, and a right-aligned year or tag in tabular numerals. Rows have no fill at rest; hover moves the row 4px right and turns the index azure.
+### Media slot
+16:9, `prussian` ground, 1px `azure-deep` rule, centred annotation-scale label. Where NPG has no media it says so plainly. It is never dressed up to imply an image exists.
 
-### Media Slot
-- A 16:9 square-cornered area for photography and video stills, filled with a flat paper-tint-2 ground, a hairline, and a centred label. Until NPG supplies real media it displays a plainly-worded pending state — it is never dressed up to imply an image exists.
-
-### Inputs / Fields
-- **Style:** square, white ground, 1px ink hairline, generous padding; label above in label-scale uppercase tracked slate.
-- **Focus:** the hairline becomes 2px azure and a 3px azure ring sits outside it.
-- **Error:** hairline and helper text switch to `--state-error`.
-- **Success:** the form status line switches to `--state-success`.
+### Inputs
+Square, `prussian-raised` ground, 1px `azure-deep` rule, paper text. Focus takes the rule to 2px azure plus a 3px azure ring outside it. Error switches rule and helper to `state-error`.
 
 ## Do's and Don'ts
 
-### Do:
-- **Do** keep azure as a marker — a rule, an underline, a small square, one button (see The Marker Rule).
-- **Do** set display and headline type at weight 300; let scale and space carry emphasis.
-- **Do** build light surfaces from navy tinted to 2–8%, never a neutral grey.
-- **Do** present services, credits, and crew as hairline-separated rows on the grid.
-- **Do** use tabular numerals wherever figures column up.
-- **Do** place the logo on white so it needs no plate, chip, or background patch behind it.
-- **Do** lead with the mission — NPG takes on the technical and production challenges so up-and-coming artists can put out quality content — and only then with the two disciplines. Mention touring dry hire and live event AV exactly once, as on-request.
-- **Do** keep "bespoke setup, built with the artist, so it feels personal to them" visible as the core differentiator; it is the claim a packaged competitor cannot copy.
+### Do
+- **Do** let the signal path carry the argument. If a paragraph restates what a node already says, cut the paragraph.
+- **Do** keep the branch structure visible — it is the whole "not only content" claim.
+- **Do** set display type wide and heavy so it holds against the field.
+- **Do** blue-shift every neutral.
+- **Do** name the three non-content capabilities as real work: touring racks and dry hire, live event audio and camera, and system design for others to run.
+- **Do** keep "bespoke setup, built with the artist" central; it is the claim a packaged competitor cannot copy.
+- **Do** keep tabular numerals wherever figures column up.
 
-### Don't:
-- **Don't** reintroduce the retired road-case world: safety orange, stencil display type, monospace labels, handwriting script, hazard stripes, laminate chips, paper texture, corner armour, or rivets. All of it was removed deliberately.
-- **Don't** add a second or third typeface. Width, weight, case, and tracking cover every need (The One-Family Rule).
-- **Don't** use `#00A0FF` for small text on a light ground — it fails contrast at 2.8:1. Use `--azure-deep`.
-- **Don't** wrap content in cards, panels, or bordered boxes, and don't add box-shadows to create hierarchy.
-- **Don't** fill the hero with texture — no tiled grid or line-field overlay, no gradient wash, no pattern. It is a plain ink field reserved for a real photograph; substituting decoration for the missing image is the failure this rule exists to prevent.
-- **Don't** let the page run dark beyond the hero and footer (The Two-Anchor Rule).
-- **Don't** frame NPG as full-service or one-stop, and don't mention the crew's freelance AVL work — both were retired at the client's instruction.
-- **Don't** call the audience "small artists" in public copy (it's the internal shorthand); write "up-and-coming" or "artists who are still building". And don't present the offer as fixed packages or tiers — the setup is bespoke per artist.
-- **Don't** support the "why quality content matters" argument with invented statistics, platform/algorithm claims, or figures about what labels and promoters do. Reasoning only, unless the client supplies a real source.
-- **Don't** fabricate client names, testimonials, press, or metrics beyond Silver Chamber Ensemble, Manchester Troubadors, Gone Tomorrow, and the Tiny Desk–style grassroots origin story confirmed in PRODUCT.md. Don't invent crew names — role titles only until supplied.
+### Don't
+- **Don't** reintroduce the retired world: light-dominant pages, Archivo Light display, the two-anchor rule, hairline row lists as the primary structure.
+- **Don't** reintroduce the world retired before that: safety orange, stencil type, hazard stripes, road-case metaphors.
+- **Don't** add a second typeface, and specifically **don't** add a monospace to signal "technical".
+- **Don't** turn azure into a flat filled panel with text on it (The Exposure Rule).
+- **Don't** run a second pale section (The One-Plate Rule).
+- **Don't** place the black master logo artwork on any dark ground. The site uses the redrawn type monogram; the master is legal only on the pale plate.
+- **Don't** use cards, nested containers, or a same-size icon-heading-text grid as page structure.
+- **Don't** number sections unless the sequence carries information. The signal path's stages **are** a sequence, so they are numbered; nothing else is.
+- **Don't** support the "why this matters" argument with invented statistics, platform or algorithm claims, or figures about what labels and promoters do. Reasoning only, unless the client supplies a real source.
+- **Don't** fabricate clients, testimonials, press, or metrics beyond Silver Chamber Ensemble, Manchester Troubadors, Gone Tomorrow, and the Tiny Desk–style grassroots origin confirmed in PRODUCT.md. Don't invent crew names.
+- **Don't** call the audience "small artists" in public copy, and don't present the offer as fixed packages or tiers.

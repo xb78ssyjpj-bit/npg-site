@@ -1,0 +1,379 @@
+<!doctype html>
+<!--
+  DIRECTION CONTRACT — NPG homepage
+
+  THESIS: NPG is a technical partner whose spine is a live signal path branching from one
+  trunk into many outputs; content is a branch, not the whole. Refuses the category default:
+  dark hero over a showreel, then a three-card services grid.
+
+  OWN-WORLD: The cyanotype — photographic blue print and ancestor of the engineering
+  blueprint, whose chemistry is already the brand's azure and whose mottle is already the
+  logo's noise. Pale linework and drawing-office annotation on Prussian ink; drifting cloud
+  field; traces, nodes and a bus instead of cards; one pale contact-sheet plate.
+
+  STORY: A visitor sees a technical drawing come alive, understands NPG absorbs the whole
+  technical problem, sees their own job on one of the branches, and sends a brief.
+
+  FIRST VIEWPORT: Full-bleed cloud field. Redrawn NPG mark top-left, one azure action
+  top-right. Display line wide and heavy at left, lede beneath, two actions under it.
+  Drawing title block bottom-right. The trunk's first trace enters from the lower edge.
+
+  FORM: Pinned by the client from a pitched shortlist — signal path as spine (1), cloud
+  field as skin (3). No concept roll: a brief-pinned direction beats it.
+-->
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nuages Production Group — Manchester production, whatever the technical problem is</title>
+<meta name="description" content="Nuages Production Group design the setup around your room and your song, build it, run it on the day, and hand back the finished thing. Live records, films, touring racks and events, from Manchester.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <a class="mark" href="#top" aria-label="Nuages Production Group — home">
+    <span class="mark__glyph" aria-hidden="true">NPG</span>
+    <span class="mark__word" aria-hidden="true">Nuages Production Group</span>
+  </a>
+  <nav class="nav" aria-label="Primary">
+    <a href="#path">The path</a>
+    <a href="#gap">The gap</a>
+    <a href="#credits">Credits</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="btn btn--primary masthead__cta" href="#contact">Send us a brief</a>
+</header>
+
+<main id="main">
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero" id="top">
+    <div class="hero__inner">
+      <h1 class="display">The technical<br>part is ours.</h1>
+      <p class="lede">
+        Nuages Production Group is a Manchester production outfit. We design the setup
+        around your room and your song, build it, run it on the day, and hand back the
+        finished thing: live records, films, touring racks, whole events.
+        <em>You don’t need to know how any of it works.</em>
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#contact">Send us a brief</a>
+        <a class="btn btn--ghost" href="#path">Follow the path</a>
+      </div>
+    </div>
+
+    <div class="titleblock" aria-hidden="true">
+      <div class="titleblock__row"><span>Sheet</span><b>01 — Capability</b></div>
+      <div class="titleblock__row"><span>Origin</span><b>Manchester, UK</b></div>
+      <div class="titleblock__row"><span>Crew</span><b>03</b></div>
+      <div class="titleblock__row"><span>Rev</span><b>2026.08</b></div>
+    </div>
+  </section>
+
+  <!-- ========================= SIGNAL PATH ========================= -->
+  <section class="path" id="path">
+    <div class="path__head">
+      <h2 class="headline">One trunk.<br>Wherever it needs to come out.</h2>
+      <p class="lede">
+        Every job runs the same five stages. What changes is the branch at the end.
+        That is why we are not only a content company, and why you can bring us a
+        problem that isn’t a video.
+      </p>
+    </div>
+
+    <div class="schematic">
+
+      <!-- One continuous trace: trunk -> drop -> bus. Geometry is measured from
+           the real dot positions in app.js, so it connects at every breakpoint. -->
+      <div class="wires" aria-hidden="true">
+        <span class="wire wire--trunk" id="wireTrunk">
+          <span class="wire__lit" id="trunkLit"></span>
+          <span class="wire__pulse" id="trunkPulse"></span>
+        </span>
+        <span class="wire wire--drop" id="wireDrop"></span>
+        <span class="wire wire--bus" id="wireBus"></span>
+      </div>
+
+      <div class="trunk" role="tablist" aria-label="The five stages of a job">
+        <button class="node is-active" role="tab" id="tab-1" aria-controls="panel" aria-selected="true" tabindex="0" data-stage="1">
+          <span class="node__dot" aria-hidden="true"></span>
+          <span class="node__index">01</span>
+          <span class="node__name">The problem</span>
+        </button>
+        <button class="node" role="tab" id="tab-2" aria-controls="panel" aria-selected="false" tabindex="-1" data-stage="2">
+          <span class="node__dot" aria-hidden="true"></span>
+          <span class="node__index">02</span>
+          <span class="node__name">The design</span>
+        </button>
+        <button class="node" role="tab" id="tab-3" aria-controls="panel" aria-selected="false" tabindex="-1" data-stage="3">
+          <span class="node__dot" aria-hidden="true"></span>
+          <span class="node__index">03</span>
+          <span class="node__name">The rig</span>
+        </button>
+        <button class="node" role="tab" id="tab-4" aria-controls="panel" aria-selected="false" tabindex="-1" data-stage="4">
+          <span class="node__dot" aria-hidden="true"></span>
+          <span class="node__index">04</span>
+          <span class="node__name">The day</span>
+        </button>
+        <button class="node" role="tab" id="tab-5" aria-controls="panel" aria-selected="false" tabindex="-1" data-stage="5">
+          <span class="node__dot" aria-hidden="true"></span>
+          <span class="node__index">05</span>
+          <span class="node__name">The handover</span>
+        </button>
+      </div>
+
+      <div class="panel" id="panel" role="tabpanel" aria-labelledby="tab-1" tabindex="0">
+        <p class="panel__claim" id="panelClaim">A room, a song, a date.</p>
+        <p class="panel__body" id="panelBody">
+          You tell us what you’re making and roughly when. You don’t need a kit list, a
+          channel count or a plan. Working that out is the job, not the thing you have to
+          bring to it.
+        </p>
+      </div>
+
+      <div class="fan" id="fan">
+        <h3 class="fan__title">Where it comes out</h3>
+        <ul class="branches">
+          <li class="branch">
+            <span class="branch__dot" aria-hidden="true"></span>
+            <span class="branch__name">Live record</span>
+            <span class="branch__note">Multitrack capture in the room. Single sessions through to full-length live records, tracked and mixed by people who play.</span>
+          </li>
+          <li class="branch">
+            <span class="branch__dot" aria-hidden="true"></span>
+            <span class="branch__name">Film</span>
+            <span class="branch__note">Music video, social and short-form, and live session film, built around the track rather than dropped on top of it.</span>
+          </li>
+          <li class="branch">
+            <span class="branch__dot" aria-hidden="true"></span>
+            <span class="branch__name">Live event</span>
+            <span class="branch__note">Audio and camera production on the day, for shows and events that need both handled by the same people.</span>
+          </li>
+          <li class="branch">
+            <span class="branch__dot" aria-hidden="true"></span>
+            <span class="branch__name">Dry hire</span>
+            <span class="branch__note">Touring racks and equipment out on their own, for people who already have their own crew.</span>
+          </li>
+          <li class="branch">
+            <span class="branch__dot" aria-hidden="true"></span>
+            <span class="branch__name">System design</span>
+            <span class="branch__note">The drawing without the rig. We spec the signal flow and the setup; your team runs it.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ THE GAP ============================ -->
+  <section class="gap" id="gap">
+    <div class="gap__head">
+      <h2 class="headline">The gap we close.</h2>
+      <p class="lede">
+        These days you’re usually seen on a screen before you’re heard in a room. The songs
+        are ready long before the material around them is, and closing that distance is a
+        production job in its own right.
+      </p>
+    </div>
+
+    <figure class="compare" id="compare">
+      <div class="compare__stage">
+        <!-- The scene is drawn, not filmed: one authored stage, rendered twice.
+             The right side is how it should look; the left is the same scene put
+             through what a phone at the back of a room actually does to it. -->
+        <svg class="scene-defs" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="npgBackdrop" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#061320"/>
+              <stop offset="0.42" stop-color="#0A2942"/>
+              <stop offset="1" stop-color="#03080F"/>
+            </linearGradient>
+            <radialGradient id="npgHaze" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0" stop-color="#3E9AD8" stop-opacity="0.92"/>
+              <stop offset="0.5" stop-color="#1B5F96" stop-opacity="0.55"/>
+              <stop offset="1" stop-color="#0A2942" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="npgWash" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0" stop-color="#8FD8FF" stop-opacity="0.55"/>
+              <stop offset="1" stop-color="#8FD8FF" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="npgBeam" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#9BDCFF" stop-opacity="0.42"/>
+              <stop offset="1" stop-color="#9BDCFF" stop-opacity="0"/>
+            </linearGradient>
+
+            <symbol id="npgStage" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+              <rect width="1600" height="900" fill="url(#npgBackdrop)"/>
+
+              <!-- Haze behind the players: without a lit ground the silhouettes
+                   are black on black and the whole scene reads as an empty box. -->
+              <ellipse cx="800" cy="540" rx="960" ry="430" fill="url(#npgHaze)"/>
+              <ellipse cx="330" cy="470" rx="290" ry="240" fill="url(#npgWash)"/>
+              <ellipse cx="1290" cy="480" rx="280" ry="230" fill="url(#npgWash)"/>
+
+              <!-- beams from the truss -->
+              <g fill="url(#npgBeam)">
+                <path d="M267 160 L 60 800 L 486 800 Z"/>
+                <path d="M637 160 L 424 800 L 872 800 Z"/>
+                <path d="M967 160 L 760 800 L 1206 800 Z"/>
+                <path d="M1337 160 L 1128 800 L 1568 800 Z"/>
+              </g>
+
+              <!-- lighting truss -->
+              <rect x="0" y="118" width="1600" height="11" fill="#03080F"/>
+              <g fill="#03080F">
+                <rect x="248" y="129" width="38" height="50"/>
+                <rect x="618" y="129" width="38" height="50"/>
+                <rect x="948" y="129" width="38" height="50"/>
+                <rect x="1318" y="129" width="38" height="50"/>
+              </g>
+
+              <!-- players, read as backlit silhouettes -->
+              <g fill="#03080F">
+                <circle cx="1010" cy="432" r="41"/>
+                <path d="M952 622 q58 -108 116 0 z"/>
+                <rect x="898" y="522" width="152" height="7" rx="3.5"/>
+                <rect x="1032" y="500" width="150" height="7" rx="3.5"/>
+                <circle cx="762" cy="388" r="48"/>
+                <path d="M688 764 q74 -278 148 0 z"/>
+                <circle cx="478" cy="410" r="45"/>
+                <path d="M412 772 q66 -264 132 0 z"/>
+                <path d="M428 566 l 154 -62 l 19 41 l -154 62 z"/>
+                <ellipse cx="426" cy="590" rx="54" ry="42"/>
+              </g>
+
+              <g stroke="#03080F" stroke-width="9" fill="none" stroke-linecap="round">
+                <path d="M700 466 L 750 446"/>
+                <path d="M700 466 L 700 784"/>
+              </g>
+
+              <!-- wedges and stage lip -->
+              <g fill="#03080F">
+                <path d="M296 800 l 212 0 l -32 -72 l -148 0 z"/>
+                <path d="M1052 800 l 212 0 l -32 -72 l -148 0 z"/>
+              </g>
+              <rect x="0" y="794" width="1600" height="106" fill="#03080F"/>
+            </symbol>
+          </defs>
+        </svg>
+
+        <div class="compare__frame compare__frame--after" aria-hidden="true">
+          <svg class="scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+            <use href="#npgStage"/>
+          </svg>
+          <span class="compare__tag compare__tag--right">Captured properly</span>
+        </div>
+
+        <div class="compare__frame compare__frame--before" id="compareBefore" aria-hidden="true">
+          <div class="scene-phone">
+            <svg class="scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+              <use href="#npgStage"/>
+              <!-- the lights clip, and there are heads in the way -->
+              <g fill="#F4F9FC">
+                <ellipse cx="267" cy="166" rx="74" ry="50" opacity="0.62"/>
+                <ellipse cx="637" cy="166" rx="74" ry="50" opacity="0.62"/>
+                <ellipse cx="967" cy="166" rx="74" ry="50" opacity="0.62"/>
+                <ellipse cx="1337" cy="166" rx="74" ry="50" opacity="0.62"/>
+                <ellipse cx="800" cy="450" rx="360" ry="165" opacity="0.20"/>
+              </g>
+              <g fill="#05090D">
+                <circle cx="150" cy="880" r="98"/>
+                <circle cx="415" cy="925" r="108"/>
+                <path d="M596 900 q26 -150 52 0 z"/>
+                <circle cx="905" cy="905" r="92"/>
+                <circle cx="1290" cy="935" r="112"/>
+                <path d="M1105 900 q22 -130 44 0 z"/>
+              </g>
+            </svg>
+          </div>
+          <span class="compare__tag compare__tag--left">Phone, back of the room</span>
+        </div>
+
+        <div class="compare__handle" id="compareHandle"></div>
+        <input class="compare__range" id="compareRange" type="range" min="0" max="100" value="50"
+               aria-label="Reveal the difference between a phone recording and a proper capture">
+      </div>
+
+      <figcaption class="compare__caption">
+        <span class="pending">Placeholder — awaiting media</span>
+        Both panels are drawn, not filmed. Drop in one real pairing — the same song, phone
+        capture beside NPG capture, and this becomes the strongest thing on the page.
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- =========================== CREDITS (plate) =========================== -->
+  <section class="plate" id="credits">
+    <div class="plate__inner">
+      <div class="plate__head">
+        <h2 class="headline">Worked with</h2>
+        <p class="plate__note">A running credit list. Stills and films go up as each project clears for release.</p>
+      </div>
+
+      <ol class="credits">
+        <li class="credit">
+          <span class="credit__idx">01</span>
+          <span class="credit__name">Silver Chamber Ensemble</span>
+          <span class="credit__disc">Ongoing collaboration</span>
+          <span class="credit__media">Media pending</span>
+        </li>
+        <li class="credit">
+          <span class="credit__idx">02</span>
+          <span class="credit__name">Manchester Troubadors</span>
+          <span class="credit__disc">Ongoing collaboration</span>
+          <span class="credit__media">Media pending</span>
+        </li>
+        <li class="credit">
+          <span class="credit__idx">03</span>
+          <span class="credit__name">Gone Tomorrow</span>
+          <span class="credit__disc">Ongoing collaboration</span>
+          <span class="credit__media">Media pending</span>
+        </li>
+      </ol>
+
+      <p class="plate__origin">
+        We met studying music at the University of Manchester and started out filming
+        Tiny&nbsp;Desk–style sessions for grassroots Manchester bands. We still work the
+        same rooms.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================ CONTACT ============================ -->
+  <section class="close" id="contact">
+    <div class="close__inner">
+      <h2 class="display display--close">Tell us what<br>you’re making.</h2>
+      <p class="lede">
+        Roughly what, roughly when. If the technical side is the part you can’t picture yet,
+        that’s fine. That is the part we take on.
+      </p>
+      <div class="close__actions">
+        <a class="btn btn--primary" href="mailto:info@nuagesproductiongroup.co.uk">Send us a brief</a>
+        <a class="btn btn--ghost" href="https://instagram.com/nuagesproductiongroup" rel="noopener">Instagram</a>
+      </div>
+      <dl class="details">
+        <div><dt>Email</dt><dd><a href="mailto:info@nuagesproductiongroup.co.uk">info@nuagesproductiongroup.co.uk</a></dd></div>
+        <div><dt>Phone</dt><dd><a href="tel:+447946200720">+44 7946 200720</a></dd></div>
+        <div><dt>Based</dt><dd>Manchester, UK</dd></div>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <span class="foot__mark" aria-hidden="true">NPG</span>
+  <span class="foot__meta">Nuages Production Group · Manchester</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
