@@ -334,7 +334,7 @@ body {
 }
 
 @media (min-width: 900px) {
-  .why { grid-template-columns: minmax(0, 1.6fr) auto; gap: var(--s8); }
+  .why { gap: var(--s8); }
 }
 
 .why__copy { display: grid; gap: var(--s5); }
@@ -495,13 +495,7 @@ body {
   margin-bottom: var(--s7);
 }
 
-@media (min-width: 900px) {
-  .plate__head {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: var(--s7);
-    align-items: end;
-  }
-}
+
 
 .plate__note {
   margin: 0;
