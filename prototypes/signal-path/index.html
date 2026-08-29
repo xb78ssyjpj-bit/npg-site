@@ -15,14 +15,15 @@
   out versus what they could be, finds their job in a plain five-item list, and sends
   a brief. Nothing requires them to understand a signal chain.
 
-  FIRST VIEWPORT: Full-bleed cloud field. The real NPG mark recoloured pale, top-left;
-  one azure action top-right. Display line wide and heavy at left, lede beneath, two
-  actions under it, drawing title block bottom-right.
+  FIRST VIEWPORT: The comparison fills the viewport edge to edge and runs under a
+  translucent masthead carrying the real NPG mark. The split rests dead centre, on the
+  singer, so one figure is half-degraded and half-clean. Copy sits bottom-left over a
+  scrim: display line, lede, two actions. On narrow screens the picture leads and the
+  copy follows it in flow rather than sitting on top of it.
 
-  FORM: Client-pinned from a pitched shortlist — the comparison drag (4) as the page's
-  centrepiece, the cloud field (3) as its skin. The signal path (1) was built, shown,
-  and cut at the client's instruction. The hero's eye-catcher is an OPEN DECISION;
-  what stands here is the holding composition.
+  FORM: Client-pinned from a pitched shortlist — lead with the drag itself. The signal
+  path (1) was built, shown, and cut for being convoluted for a non-technical audience.
+  The cloud field (3) remains as the ground for everything below the hero.
 -->
 <html lang="en-GB">
 <head>
@@ -59,45 +60,10 @@
 <main id="main">
 
   <!-- ============================ HERO ============================ -->
+  <!-- The comparison IS the first viewport: the page's best asset is the first
+       thing seen, and the offer is shown rather than described. -->
   <section class="hero" id="top">
-    <div class="hero__inner">
-      <h1 class="display">The technical<br>part is ours.</h1>
-      <p class="lede">
-        Nuages Production Group is a Manchester production outfit. We design the setup
-        around your room and your song, build it, run it on the day, and hand back the
-        finished thing: live records, films, touring racks, whole events.
-        <em>You don’t need to know how any of it works.</em>
-      </p>
-      <div class="hero__actions">
-        <a class="btn btn--primary" href="#contact">Send us a brief</a>
-        <a class="btn btn--ghost" href="#gap">See the difference</a>
-      </div>
-    </div>
-
-    <div class="titleblock" aria-hidden="true">
-      <div class="titleblock__row"><span>Sheet</span><b>01 — Capability</b></div>
-      <div class="titleblock__row"><span>Origin</span><b>Manchester, UK</b></div>
-      <div class="titleblock__row"><span>Crew</span><b>03</b></div>
-      <div class="titleblock__row"><span>Rev</span><b>2026.08</b></div>
-    </div>
-  </section>
-
-  <!-- ============================ THE GAP ============================ -->
-  <section class="gap" id="gap">
-    <div class="gap__head">
-      <h2 class="headline">The gap we close.</h2>
-      <p class="lede">
-        These days you’re usually seen on a screen before you’re heard in a room. The songs
-        are ready long before the material around them is, and closing that distance is a
-        production job in its own right.
-      </p>
-    </div>
-
-    <figure class="compare" id="compare">
-      <div class="compare__stage">
-        <!-- The scene is drawn, not filmed: one authored stage, rendered twice.
-             The right side is how it should look; the left is the same scene put
-             through what a phone at the back of a room actually does to it. -->
+    <div class="hero__stage" id="compare">
         <svg class="scene-defs" aria-hidden="true" focusable="false">
           <defs>
             <linearGradient id="npgBackdrop" x1="0" y1="0" x2="0" y2="1">
@@ -125,6 +91,7 @@
               <!-- Haze behind the players: without a lit ground the silhouettes
                    are black on black and the whole scene reads as an empty box. -->
               <ellipse cx="800" cy="540" rx="960" ry="430" fill="url(#npgHaze)"/>
+              <ellipse cx="800" cy="500" rx="330" ry="300" fill="url(#npgHaze)" opacity="0.75"/>
               <ellipse cx="330" cy="470" rx="290" ry="240" fill="url(#npgWash)"/>
               <ellipse cx="1290" cy="480" rx="280" ry="230" fill="url(#npgWash)"/>
 
@@ -145,23 +112,47 @@
                 <rect x="1318" y="129" width="38" height="50"/>
               </g>
 
-              <!-- players, read as backlit silhouettes -->
+              <!-- Backlit players. Proportions matter more than detail here: a head
+                   is about a seventh of a standing figure, and getting that wrong is
+                   what made the earlier pass read as blobs rather than people. -->
               <g fill="#03080F">
-                <circle cx="1010" cy="432" r="41"/>
-                <path d="M952 622 q58 -108 116 0 z"/>
-                <rect x="898" y="522" width="152" height="7" rx="3.5"/>
-                <rect x="1032" y="500" width="150" height="7" rx="3.5"/>
-                <circle cx="762" cy="388" r="48"/>
-                <path d="M688 764 q74 -278 148 0 z"/>
-                <circle cx="478" cy="410" r="45"/>
-                <path d="M412 772 q66 -264 132 0 z"/>
-                <path d="M428 566 l 154 -62 l 19 41 l -154 62 z"/>
-                <ellipse cx="426" cy="590" rx="54" ry="42"/>
+                <!-- guitarist -->
+                <circle cx="430" cy="496" r="23"/>
+                <rect x="424" y="513" width="12" height="13"/>
+                <path d="M389 524 L471 524 L458 646 L402 646 Z"/>
+                <path d="M402 646 L425 646 L422 794 L398 794 Z"/>
+                <path d="M435 646 L458 646 L462 794 L438 794 Z"/>
+                <ellipse cx="470" cy="614" rx="40" ry="31" transform="rotate(-18 470 614)"/>
+                <path d="M494 598 L588 547 L596 561 L502 612 Z"/>
+                <path d="M470 530 L486 537 L476 598 L459 592 Z"/>
+
+                <!-- singer -->
+                <circle cx="800" cy="487" r="24"/>
+                <rect x="794" y="505" width="12" height="14"/>
+                <path d="M757 516 L843 516 L829 642 L771 642 Z"/>
+                <path d="M771 642 L795 642 L792 794 L767 794 Z"/>
+                <path d="M805 642 L829 642 L833 794 L808 794 Z"/>
+                <path d="M759 521 L772 523 L766 607 L753 604 Z"/>
+                <path d="M841 521 L829 525 L807 567 L817 575 Z"/>
+
+                <!-- drummer, seated behind the kit -->
+                <circle cx="1090" cy="548" r="22"/>
+                <path d="M1058 574 L1122 574 L1114 664 L1066 664 Z"/>
+                <path d="M1056 580 L1069 574 L1032 529 L1021 539 Z"/>
+                <path d="M1124 580 L1111 574 L1148 529 L1159 539 Z"/>
+                <ellipse cx="1046" cy="664" rx="34" ry="26"/>
+                <ellipse cx="1090" cy="742" rx="72" ry="58"/>
+                <ellipse cx="1154" cy="708" rx="38" ry="34"/>
+                <ellipse cx="1002" cy="556" rx="60" ry="7"/>
+                <ellipse cx="1182" cy="544" rx="56" ry="7"/>
               </g>
 
-              <g stroke="#03080F" stroke-width="9" fill="none" stroke-linecap="round">
-                <path d="M700 466 L 750 446"/>
-                <path d="M700 466 L 700 784"/>
+              <g stroke="#03080F" fill="none" stroke-linecap="round"
+                >
+                <path d="M772 794 L772 512" stroke-width="7"/>
+                <path d="M772 512 L794 500" stroke-width="7"/>
+                <path d="M1006 560 L1012 742" stroke-width="6"/>
+                <path d="M1178 548 L1170 742" stroke-width="6"/>
               </g>
 
               <!-- wedges and stage lip -->
@@ -174,11 +165,13 @@
           </defs>
         </svg>
 
+
+        <div class="compare__stage">
         <div class="compare__frame compare__frame--after" aria-hidden="true">
           <svg class="scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
             <use href="#npgStage"/>
           </svg>
-          <span class="compare__tag compare__tag--right">Captured properly</span>
+          <span class="compare__tag compare__tag--right">NPG capture</span>
         </div>
 
         <div class="compare__frame compare__frame--before" id="compareBefore" aria-hidden="true">
@@ -194,29 +187,73 @@
                 <ellipse cx="800" cy="450" rx="360" ry="165" opacity="0.20"/>
               </g>
               <g fill="#05090D">
-                <circle cx="150" cy="880" r="98"/>
-                <circle cx="415" cy="925" r="108"/>
-                <path d="M596 900 q26 -150 52 0 z"/>
-                <circle cx="905" cy="905" r="92"/>
-                <circle cx="1290" cy="935" r="112"/>
-                <path d="M1105 900 q22 -130 44 0 z"/>
+                <circle cx="168" cy="848" r="44"/>
+                <path d="M96 900 q72 -60 144 0 z"/>
+                <circle cx="452" cy="872" r="48"/>
+                <path d="M374 900 q78 -58 156 0 z"/>
+                <circle cx="962" cy="860" r="45"/>
+                <path d="M888 900 q74 -58 148 0 z"/>
+                <circle cx="1318" cy="882" r="50"/>
+                <path d="M1236 900 q82 -56 164 0 z"/>
+                <path d="M690 900 L706 806 L720 806 L736 900 Z"/>
+                <rect x="694" y="756" width="30" height="52" rx="4"/>
               </g>
             </svg>
           </div>
           <span class="compare__tag compare__tag--left">Phone, back of the room</span>
         </div>
 
-        <div class="compare__handle" id="compareHandle"></div>
-        <input class="compare__range" id="compareRange" type="range" min="0" max="100" value="50"
-               aria-label="Reveal the difference between a phone recording and a proper capture">
-      </div>
+          <div class="compare__handle" id="compareHandle">
+            <span class="compare__grip" aria-hidden="true">
+              <svg viewBox="0 0 34 16" width="34" height="16" focusable="false">
+                <path d="M13 3 L7 8 L13 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 3 L27 8 L21 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+          <input class="compare__range" id="compareRange" type="range" min="0" max="100" value="50"
+                 aria-label="Drag to compare a phone recording with a proper capture">
+        </div>
+    </div>
 
-      <figcaption class="compare__caption">
+    <div class="hero__scrim" aria-hidden="true"></div>
+
+    <div class="hero__overlay">
+      <h1 class="display">The technical<br>part is ours.</h1>
+      <p class="lede">
+        A Manchester production outfit. We design the setup around your room and your
+        song, run it on the day, and hand back the finished thing.
+        <em>You don’t need to know how any of it works.</em>
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#contact">Send us a brief</a>
+        <a class="btn btn--ghost" href="#what">What we take on</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== THE GAP ============================== -->
+  <section class="why" id="gap">
+    <div class="why__copy">
+      <h2 class="headline">That difference is the whole job.</h2>
+      <p class="lede">
+        These days you’re usually seen on a screen before you’re heard in a room. The
+        songs are ready long before the material around them is, and closing that
+        distance takes kit most artists don’t own and hours most artists don’t have.
+      </p>
+      <p class="why__note">
         <span class="pending">Placeholder — awaiting media</span>
-        Both panels are drawn, not filmed. Drop in one real pairing — the same song, phone
-        capture beside NPG capture, and this becomes the strongest thing on the page.
-      </figcaption>
-    </figure>
+        Both panels above are drawn, not filmed. Drop in one real pairing, the same song,
+        phone capture beside NPG capture, and this becomes the strongest thing on the page.
+      </p>
+    </div>
+
+    <div class="titleblock" aria-hidden="true">
+      <div class="titleblock__row"><span>Sheet</span><b>01 — Capability</b></div>
+      <div class="titleblock__row"><span>Origin</span><b>Manchester, UK</b></div>
+      <div class="titleblock__row"><span>Crew</span><b>03</b></div>
+      <div class="titleblock__row"><span>Rev</span><b>2026.08</b></div>
+    </div>
   </section>
 
   <!-- ========================== WHAT WE TAKE ON ========================== -->

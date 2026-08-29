@@ -18,7 +18,7 @@ colors:
 typography:
   display:
     fontFamily: "Anybody, Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "clamp(2.75rem, 7vw, 5.5rem)"
+    fontSize: "clamp(2rem, 4.6vw, 3.6rem)"
     fontWeight: 700
     fontStretch: "125%"
     lineHeight: 0.96
@@ -187,7 +187,7 @@ The scene forces dark: the subject is rooms, stages, and load-ins, and the page'
 - **Display** (`wdth 125`, weight 700, `clamp(2.75rem, 7vw, 5.5rem)`, tracking `-0.03em`): the hero line only. Set **wide and heavy** — the field behind it is busy, and light type would dissolve into the cloud. This deliberately inverts the retired system's Light-Display rule.
 - **Headline** (`wdth 112`, weight 600): section openers.
 - **Subhead** (`wdth 108`, weight 600, `clamp(1.3rem, 2.4vw, 1.9rem)`): the panel's claim line — the one step between headline and title.
-- **Display Small** (`clamp(2.25rem, 5.5vw, 4.25rem)`): the closing statement, one step under the hero so the page ends firmly without competing with its opening.
+- **Display Small** (`clamp(2.25rem, 5.5vw, 4.25rem)`): the closing statement. It is deliberately **larger** than the hero display: the hero shares its viewport with the comparison image and must not crowd it, while the close owns its space entirely and is where the page should land hardest.
 - **Title** (`wdth 100`, weight 600): node names and item headings. **Credit Name** (`wdth 104`, `clamp(1.15rem, 2vw, 1.5rem)`) is its counterpart on the pale plate, set larger because the credits are the section's whole content.
 - **Mark Large** (`wdth 128`, weight 700, `clamp(1.6rem, 3vw, 2.2rem)`): the footer sign-off only. It sits a step above the masthead Mark deliberately — it closes the page rather than labelling it.
 - **Lede** (weight 400, measure ≤ 56ch): one intro paragraph per section.
@@ -214,15 +214,22 @@ Scroll pacing runs: **dense luminous hero → the spine, wide and interactive �
 
 ## The Comparison (signature component)
 
-The page's centrepiece and its whole argument. A split frame showing one scene twice — as a phone at the back of a room renders it, and as it should look — with a draggable handle between them. It replaces an earlier interactive signal-path diagram that was cut for being convoluted for a **non-technical audience**, which is the standing constraint here: the primary visitor is an artist, not an engineer, and any device that needs explaining before it persuades is the wrong device.
+**The page's first viewport** and its whole argument — it is the hero, not a section within the page. A split frame showing one scene twice — as a phone at the back of a room renders it, and as it should look — with a draggable handle between them. It replaces an earlier interactive signal-path diagram that was cut for being convoluted for a **non-technical audience**, which is the standing constraint here: the primary visitor is an artist, not an engineer, and any device that needs explaining before it persuades is the wrong device.
 
-- **Rest state:** split at 50%, both tags legible, the difference obvious without interaction.
+- **Rest state:** split at 50%, resting on the centre figure, so a single subject is half-degraded and half-clean. A comparison whose two halves show *different* subjects gives the eye nothing to compare — the shared figure on the split is what makes it read.
+- **Grip:** placed in the lower third, clear of any face. It landed on the singer's head in an earlier pass and hid the one thing being compared.
 - **Interaction:** drag anywhere on the frame, not only the handle; a real `<input type="range">` underneath carries keyboard and screen-reader support.
 - **Honesty:** until NPG supplies one real pairing, both panels are **drawn**, and the page says so in plain words directly beneath. It is never dressed to imply footage exists.
 
 ## Capability list
 
 Five plainly-named things NPG takes on, with one sentence each: live recording, film, live events, touring racks, system design. Hairline rule above each, no fills, no icons, no boxes. Its job is to make the non-content work visible as real capability, which is what carries the "technical partner, content included but not limited to" positioning now that the branching diagram is gone.
+
+## The masthead and the hero
+
+The hero is a **full viewport** (`100svh`), pulled up under the masthead by a negative margin equal to `--masthead-h`, so the picture runs to the top edge and the translucent masthead floats over it. Without that pull the hero starts below the masthead, its bottom lands past the fold, and the primary action is clipped.
+
+The masthead carries the **real logo**, not a type stand-in: a reversed asset derived from the master by mapping white to transparency via ink density, so the monogram's blue noise survives the recolour. Its alpha curve is lifted (gamma 0.62) because the master's mid-range ink density dissolves at masthead size.
 
 ## The Cloud Field
 

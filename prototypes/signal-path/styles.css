@@ -32,6 +32,7 @@
   --s1: 0.5rem;  --s2: 0.75rem; --s3: 1rem;   --s4: 1.5rem; --s5: 2rem;
   --s6: 3rem;    --s7: 4.5rem;  --s8: 7rem;   --s9: 10rem;
 
+  --masthead-h: 6.8rem;
   --container: 1280px;
   --gutter: clamp(1rem, 4vw, 3rem);
 
@@ -81,7 +82,7 @@ body {
 .display {
   margin: 0;
   font-variation-settings: "wdth" 125, "wght" 700;
-  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  font-size: clamp(2rem, 4.6vw, 3.6rem);
   line-height: 0.96;
   letter-spacing: -0.03em;
   text-wrap: balance;
@@ -180,7 +181,8 @@ body {
   display: flex;
   align-items: center;
   gap: var(--s5);
-  padding: var(--s4) var(--gutter);
+  height: var(--masthead-h);
+  padding: 0 var(--gutter);
   border-bottom: 1px solid var(--rule);
   background: linear-gradient(to bottom, rgba(3, 8, 15, 0.92), rgba(3, 8, 15, 0.55));
   backdrop-filter: blur(14px);
@@ -189,6 +191,7 @@ body {
 .mark {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;   /* else the column stretches the mark to the wordmark's width */
   gap: 0.15em;
   text-decoration: none;
   color: var(--paper);
@@ -199,8 +202,9 @@ body {
    Alpha carries the artwork's blue noise, so the texture survives the recolour. */
 .mark__img {
   display: block;
-  height: 2.1rem;
+  height: 2.75rem;
   width: auto;
+  align-self: flex-start;
 }
 
 .mark__word {
@@ -231,79 +235,80 @@ body {
 
 .masthead__cta { padding: 0.9em 1.5em; }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero: the comparison is the first viewport ---------- */
 
 .hero {
   position: relative;
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: clamp(4rem, 12vh, 9rem) var(--gutter) clamp(5rem, 14vh, 10rem);
-  min-height: min(86vh, 780px);
+  margin-top: calc(-1 * var(--masthead-h));
+  min-height: 100svh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
 }
 
-.hero__inner { max-width: 62ch; }
+.hero__stage { position: absolute; inset: 0; }
+.hero__stage .compare__stage { position: absolute; inset: 0; aspect-ratio: auto; border: 0; }
 
-.hero .lede { margin-top: var(--s5); }
+/* Copy sits on a moving image whose left half goes bright, so it needs its own
+   ground rather than trusting the picture underneath it. */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(3, 8, 15, 0.94) 0%, rgba(3, 8, 15, 0.82) 26%,
+                    rgba(3, 8, 15, 0.28) 52%, rgba(3, 8, 15, 0.10) 72%, transparent 100%);
+}
+
+.hero__overlay {
+  position: relative;
+  z-index: 6;
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--s4) var(--gutter) clamp(2rem, 5vh, 3.25rem);
+  flex-shrink: 0;              /* else the flex item shrinks and overflow:hidden eats the CTA */
+  pointer-events: none;
+}
+
+.hero__overlay > * { pointer-events: auto; }
+/* The picture is the argument now, so the headline steps down to the documented
+   displaySmall and the whole overlay fits above the fold with the action visible. */
+.hero__overlay .lede { margin-top: var(--s4); max-width: 46ch; }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s3);
-  margin-top: var(--s6);
+  margin-top: var(--s5);
 }
 
-/* Drawing title block — native to the world, used once */
-.titleblock {
-  position: absolute;
-  right: var(--gutter);
-  bottom: clamp(2rem, 6vh, 4rem);
-  border: 1px solid var(--rule);
-  background: rgba(7, 21, 34, 0.55);
-  backdrop-filter: blur(6px);
-  font-size: 0.625rem;
-  font-variation-settings: "wdth" 88, "wght" 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
-}
+/* ---------- The gap, stated once, under the picture ---------- */
 
-.titleblock__row {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--s5);
-  padding: 0.6em 1em;
-  border-bottom: 1px solid var(--rule);
-}
-.titleblock__row:last-child { border-bottom: 0; }
-.titleblock__row span { color: var(--slate); }
-.titleblock__row b { font-variation-settings: "wdth" 88, "wght" 600; color: var(--azure-pale); }
-
-/* ---------- The gap (comparison) ---------- */
-
-.gap {
+.why {
   max-width: var(--container);
   margin: 0 auto;
-  padding: clamp(4rem, 10vh, 8rem) var(--gutter);
-  border-top: 1px solid var(--rule);
-}
-
-.gap__head {
+  padding: clamp(4rem, 10vh, 7rem) var(--gutter);
   display: grid;
-  gap: var(--s5);
-  margin-bottom: clamp(2.5rem, 6vh, 4rem);
+  gap: var(--s6);
+  align-items: start;
 }
 
 @media (min-width: 900px) {
-  .gap__head {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-    gap: var(--s7);
-    align-items: end;
-  }
+  .why { grid-template-columns: minmax(0, 1.6fr) auto; gap: var(--s8); }
 }
 
-.compare { margin: 0; }
+.why__copy { display: grid; gap: var(--s5); }
+
+.why__note {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--paper-dim);
+}
 
 .compare__stage {
   position: relative;
@@ -336,8 +341,8 @@ body {
 .scene-phone {
   position: absolute;
   inset: 0;
-  filter: saturate(0.2) contrast(1.55) brightness(0.72);
-  transform: scale(1.14) translate(1.4%, 2%) rotate(-1.2deg);
+  filter: saturate(0.5) contrast(1.75) brightness(0.82) sepia(0.22) hue-rotate(-14deg) blur(1.1px);
+  transform: scale(1.24) translate(1.8%, 2.4%) rotate(-2deg);
   transform-origin: center;
 }
 
@@ -345,14 +350,14 @@ body {
   content: "";
   position: absolute;
   inset: -20%;
-  opacity: 0.5;
+  opacity: 0.72;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23g)'/%3E%3C/svg%3E");
 }
 
 .compare__tag {
   position: absolute;
-  bottom: var(--s3);
+  top: clamp(5.5rem, 13vh, 7.5rem);
   z-index: 3;
   padding: 0.5em 0.9em;
   background: rgba(3, 8, 15, 0.75);
@@ -378,17 +383,23 @@ body {
   box-shadow: 0 0 20px 2px rgba(0, 160, 255, 0.6);
   pointer-events: none;
 }
-.compare__handle::after {
-  content: "";
+
+/* The grip has to read as draggable at a glance — the arrows are the whole
+   invitation, and this is the first thing anyone touches on the page. */
+.compare__grip {
   position: absolute;
-  top: 50%;
+  top: 76%;
   left: 50%;
-  width: 40px;
-  height: 40px;
-  margin: -20px 0 0 -20px;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
   border: 1px solid var(--azure);
-  background: rgba(3, 8, 15, 0.7);
-  backdrop-filter: blur(4px);
+  background: rgba(3, 8, 15, 0.62);
+  backdrop-filter: blur(5px);
+  color: var(--azure-pale);
+  box-shadow: 0 0 30px rgba(0, 160, 255, 0.35);
 }
 
 .compare__range {
@@ -403,13 +414,6 @@ body {
 }
 .compare__range:focus-visible { opacity: 0; }
 .compare__stage:has(.compare__range:focus-visible) { outline: 2px solid var(--azure); outline-offset: 3px; }
-
-.compare__caption {
-  margin-top: var(--s4);
-  max-width: 62ch;
-  font-size: 0.875rem;
-  color: var(--paper-dim);
-}
 
 .pending {
   display: inline-block;
@@ -612,10 +616,11 @@ body {
 /* The page is one scroll on a phone, so the anchor nav earns nothing there and
    costs a row of cramped, overflowing labels. The mark and the one action stay. */
 @media (max-width: 760px) {
+  :root { --masthead-h: 5.4rem; }
   .nav { display: none; }
-  .masthead { gap: var(--s4); padding: var(--s3) var(--gutter); }
+  .masthead { gap: var(--s4); padding: 0 var(--gutter); }
   .masthead__cta { padding: 0.85em 1.15em; font-size: 0.625rem; letter-spacing: 0.12em; }
-  .mark__img { height: 1.7rem; }
+  .mark__img { height: 2.1rem; }
 
   /* Absolute placement collides with the hero actions once the column narrows,
      so the title block rejoins the flow and sits under them. */
@@ -686,4 +691,18 @@ body {
   font-size: 0.9375rem;
   line-height: 1.55;
   color: var(--paper-dim);
+}
+
+/* ---------- Hero on narrow screens ---------- */
+
+/* A 16:9 frame cannot fill a tall phone viewport, and overlaying copy on it at
+   that size buries both. The picture leads, the copy follows it in flow. */
+@media (max-width: 899px) {
+  .hero { display: block; min-height: 0; overflow: visible; }
+  .hero__stage { position: relative; height: 58vh; min-height: 20rem; }
+  .hero__overlay { padding-top: var(--s5); }
+  .hero__scrim { display: none; }
+  .hero__overlay { padding-top: var(--s6); }
+  .compare__tag { top: auto; bottom: var(--s3); }
+  .compare__grip { top: 72%; }
 }
