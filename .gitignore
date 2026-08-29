@@ -26,3 +26,6 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Scratch: re-extracted from the published canvas, regenerable
+design/extracted/
