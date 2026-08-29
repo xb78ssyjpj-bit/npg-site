@@ -2,24 +2,27 @@
 <!--
   DIRECTION CONTRACT — NPG homepage
 
-  THESIS: NPG is a technical partner whose spine is a live signal path branching from one
-  trunk into many outputs; content is a branch, not the whole. Refuses the category default:
-  dark hero over a showreel, then a three-card services grid.
+  THESIS: NPG absorbs the technical problem, and the page proves it by showing the
+  difference rather than explaining it. Refuses the category default: a services grid
+  of icon-heading-text, and the process diagram the client rejected as convoluted.
 
   OWN-WORLD: The cyanotype — photographic blue print and ancestor of the engineering
-  blueprint, whose chemistry is already the brand's azure and whose mottle is already the
-  logo's noise. Pale linework and drawing-office annotation on Prussian ink; drifting cloud
-  field; traces, nodes and a bus instead of cards; one pale contact-sheet plate.
+  blueprint, whose chemistry is already the brand's azure and whose mottle is already
+  the logo's own noise. Pale print on Prussian ink, a drifting cloud field, hairline
+  rules and one pale contact-sheet plate. No cards anywhere.
 
-  STORY: A visitor sees a technical drawing come alive, understands NPG absorbs the whole
-  technical problem, sees their own job on one of the branches, and sends a brief.
+  STORY: A visitor drags one handle, sees instantly what they are currently putting
+  out versus what they could be, finds their job in a plain five-item list, and sends
+  a brief. Nothing requires them to understand a signal chain.
 
-  FIRST VIEWPORT: Full-bleed cloud field. Redrawn NPG mark top-left, one azure action
-  top-right. Display line wide and heavy at left, lede beneath, two actions under it.
-  Drawing title block bottom-right. The trunk's first trace enters from the lower edge.
+  FIRST VIEWPORT: Full-bleed cloud field. The real NPG mark recoloured pale, top-left;
+  one azure action top-right. Display line wide and heavy at left, lede beneath, two
+  actions under it, drawing title block bottom-right.
 
-  FORM: Pinned by the client from a pitched shortlist — signal path as spine (1), cloud
-  field as skin (3). No concept roll: a brief-pinned direction beats it.
+  FORM: Client-pinned from a pitched shortlist — the comparison drag (4) as the page's
+  centrepiece, the cloud field (3) as its skin. The signal path (1) was built, shown,
+  and cut at the client's instruction. The hero's eye-catcher is an OPEN DECISION;
+  what stands here is the holding composition.
 -->
 <html lang="en-GB">
 <head>
@@ -41,12 +44,12 @@
 
 <header class="masthead">
   <a class="mark" href="#top" aria-label="Nuages Production Group — home">
-    <span class="mark__glyph" aria-hidden="true">NPG</span>
+    <img class="mark__img" src="assets/npg-mark-light.png" alt="" width="900" height="323" decoding="async">
     <span class="mark__word" aria-hidden="true">Nuages Production Group</span>
   </a>
   <nav class="nav" aria-label="Primary">
-    <a href="#path">The path</a>
     <a href="#gap">The gap</a>
+    <a href="#what">What we do</a>
     <a href="#credits">Credits</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -67,7 +70,7 @@
       </p>
       <div class="hero__actions">
         <a class="btn btn--primary" href="#contact">Send us a brief</a>
-        <a class="btn btn--ghost" href="#path">Follow the path</a>
+        <a class="btn btn--ghost" href="#gap">See the difference</a>
       </div>
     </div>
 
@@ -76,100 +79,6 @@
       <div class="titleblock__row"><span>Origin</span><b>Manchester, UK</b></div>
       <div class="titleblock__row"><span>Crew</span><b>03</b></div>
       <div class="titleblock__row"><span>Rev</span><b>2026.08</b></div>
-    </div>
-  </section>
-
-  <!-- ========================= SIGNAL PATH ========================= -->
-  <section class="path" id="path">
-    <div class="path__head">
-      <h2 class="headline">One trunk.<br>Wherever it needs to come out.</h2>
-      <p class="lede">
-        Every job runs the same five stages. What changes is the branch at the end.
-        That is why we are not only a content company, and why you can bring us a
-        problem that isn’t a video.
-      </p>
-    </div>
-
-    <div class="schematic">
-
-      <!-- One continuous trace: trunk -> drop -> bus. Geometry is measured from
-           the real dot positions in app.js, so it connects at every breakpoint. -->
-      <div class="wires" aria-hidden="true">
-        <span class="wire wire--trunk" id="wireTrunk">
-          <span class="wire__lit" id="trunkLit"></span>
-          <span class="wire__pulse" id="trunkPulse"></span>
-        </span>
-        <span class="wire wire--drop" id="wireDrop"></span>
-        <span class="wire wire--bus" id="wireBus"></span>
-      </div>
-
-      <div class="trunk" role="tablist" aria-label="The five stages of a job">
-        <button class="node is-active" role="tab" id="tab-1" aria-controls="panel" aria-selected="true" tabindex="0" data-stage="1">
-          <span class="node__dot" aria-hidden="true"></span>
-          <span class="node__index">01</span>
-          <span class="node__name">The problem</span>
-        </button>
-        <button class="node" role="tab" id="tab-2" aria-controls="panel" aria-selected="false" tabindex="-1" data-stage="2">
-          <span class="node__dot" aria-hidden="true"></span>
-          <span class="node__index">02</span>
-          <span class="node__name">The design</span>
-        </button>
-        <button class="node" role="tab" id="tab-3" aria-controls="panel" aria-selected="false" tabindex="-1" data-stage="3">
-          <span class="node__dot" aria-hidden="true"></span>
-          <span class="node__index">03</span>
-          <span class="node__name">The rig</span>
-        </button>
-        <button class="node" role="tab" id="tab-4" aria-controls="panel" aria-selected="false" tabindex="-1" data-stage="4">
-          <span class="node__dot" aria-hidden="true"></span>
-          <span class="node__index">04</span>
-          <span class="node__name">The day</span>
-        </button>
-        <button class="node" role="tab" id="tab-5" aria-controls="panel" aria-selected="false" tabindex="-1" data-stage="5">
-          <span class="node__dot" aria-hidden="true"></span>
-          <span class="node__index">05</span>
-          <span class="node__name">The handover</span>
-        </button>
-      </div>
-
-      <div class="panel" id="panel" role="tabpanel" aria-labelledby="tab-1" tabindex="0">
-        <p class="panel__claim" id="panelClaim">A room, a song, a date.</p>
-        <p class="panel__body" id="panelBody">
-          You tell us what you’re making and roughly when. You don’t need a kit list, a
-          channel count or a plan. Working that out is the job, not the thing you have to
-          bring to it.
-        </p>
-      </div>
-
-      <div class="fan" id="fan">
-        <h3 class="fan__title">Where it comes out</h3>
-        <ul class="branches">
-          <li class="branch">
-            <span class="branch__dot" aria-hidden="true"></span>
-            <span class="branch__name">Live record</span>
-            <span class="branch__note">Multitrack capture in the room. Single sessions through to full-length live records, tracked and mixed by people who play.</span>
-          </li>
-          <li class="branch">
-            <span class="branch__dot" aria-hidden="true"></span>
-            <span class="branch__name">Film</span>
-            <span class="branch__note">Music video, social and short-form, and live session film, built around the track rather than dropped on top of it.</span>
-          </li>
-          <li class="branch">
-            <span class="branch__dot" aria-hidden="true"></span>
-            <span class="branch__name">Live event</span>
-            <span class="branch__note">Audio and camera production on the day, for shows and events that need both handled by the same people.</span>
-          </li>
-          <li class="branch">
-            <span class="branch__dot" aria-hidden="true"></span>
-            <span class="branch__name">Dry hire</span>
-            <span class="branch__note">Touring racks and equipment out on their own, for people who already have their own crew.</span>
-          </li>
-          <li class="branch">
-            <span class="branch__dot" aria-hidden="true"></span>
-            <span class="branch__name">System design</span>
-            <span class="branch__note">The drawing without the rig. We spec the signal flow and the setup; your team runs it.</span>
-          </li>
-        </ul>
-      </div>
     </div>
   </section>
 
@@ -310,6 +219,41 @@
     </figure>
   </section>
 
+  <!-- ========================== WHAT WE TAKE ON ========================== -->
+  <section class="does" id="what">
+    <div class="does__head">
+      <h2 class="headline">What we take on.</h2>
+      <p class="lede">
+        You don’t need a kit list, a channel count or a plan. Working that out is
+        the job, not the thing you have to bring to it. Tell us what you’re making
+        and roughly when.
+      </p>
+    </div>
+
+    <ul class="does__list">
+      <li class="does__item">
+        <h3 class="does__name">Live recording</h3>
+        <p class="does__note">Multitrack capture in the room. Single sessions through to full-length live records, tracked and mixed by people who play.</p>
+      </li>
+      <li class="does__item">
+        <h3 class="does__name">Film</h3>
+        <p class="does__note">Music video, social and short-form, and live session film, built around the track rather than dropped on top of it.</p>
+      </li>
+      <li class="does__item">
+        <h3 class="does__name">Live events</h3>
+        <p class="does__note">Audio and camera production on the day, for shows that need both handled by the same people.</p>
+      </li>
+      <li class="does__item">
+        <h3 class="does__name">Touring racks</h3>
+        <p class="does__note">Equipment and racks out on dry hire, for people who already have their own crew.</p>
+      </li>
+      <li class="does__item">
+        <h3 class="does__name">System design</h3>
+        <p class="does__note">The plan without the rig. We spec the setup and the signal flow; your team runs it.</p>
+      </li>
+    </ul>
+  </section>
+
   <!-- =========================== CREDITS (plate) =========================== -->
   <section class="plate" id="credits">
     <div class="plate__inner">
@@ -370,8 +314,8 @@
 </main>
 
 <footer class="foot">
-  <span class="foot__mark" aria-hidden="true">NPG</span>
-  <span class="foot__meta">Nuages Production Group · Manchester</span>
+  <img class="foot__lockup" src="assets/npg-lockup-light.png" alt="" width="1400" height="594" loading="lazy" decoding="async">
+  <span class="foot__meta">Manchester · info@nuagesproductiongroup.co.uk</span>
 </footer>
 
 <script src="app.js"></script>

@@ -132,13 +132,15 @@ spacing:
 
 The world is the **cyanotype** — the photographic blue print. It is the one material that belongs to both halves of what NPG is: it is a *photographic process* (they make images) and it is the ancestor of the *engineering blueprint* (they solve technical problems). Its colour is, by chemistry, the brand's azure. Its characteristic chemical mottle is the same blue noise texture already sitting inside the logo. Nothing here is borrowed decoration; every part of it is already true about the subject.
 
-So the site is a technical drawing, exposed as a blue print, suspended in a drifting field of cloud — *nuages*. Pale linework and annotation float on deep Prussian ink. A live signal path runs through the page as its structural spine, branching from one shared technical trunk into the different things NPG delivers.
+So the site is a technical drawing, exposed as a blue print, suspended in a drifting field of cloud — *nuages*. Pale linework and annotation float on deep Prussian ink.
+
+The **audience is not technical**. That constrains the whole system: the world may be drawn from engineering, but nothing on the page may require engineering literacy to read. An earlier signal-path diagram failed exactly this test and was cut.
 
 This **replaces** the previous "Technical Register" world — a light page, navy anchors, Archivo Light, hairline rows. That direction was retired at the client's instruction: it had no memorable idea, its row lists left half the page empty, and its light-weight display type read as a category default rather than as NPG.
 
 Key characteristics:
 - **Dark-dominant**, because a cyanotype *is* dark. One pale plate section provides the counter-beat.
-- The **signal path is architecture, not illustration** — it carries the argument and replaces three sections of prose.
+- **Showing beats explaining** — the comparison carries the argument, so the page needs no process diagram and no wall of prose.
 - **Drifting noise is the ground**, not an overlay effect: an authored, animated field, frozen under `prefers-reduced-motion`.
 - **One typeface** across display, body, and annotation, using a real width axis.
 - Linework, nodes, traces, and annotation instead of cards.
@@ -210,21 +212,21 @@ A 12-column grid in a 1280px container, 24px gutters (16px under 640px). The pag
 
 Scroll pacing runs: **dense luminous hero → the spine, wide and interactive → a hard black comparison band → the pale plate → a quiet close.** Density and value alternate deliberately; a dense passage earns a quiet one.
 
-## The Signal Path (signature component)
+## The Comparison (signature component)
 
-The page's spine and its main argument. A single technical trunk of five stages that then **branches** into outputs — which is how the site says "content is one of the things we do, not the whole of what we are."
+The page's centrepiece and its whole argument. A split frame showing one scene twice — as a phone at the back of a room renders it, and as it should look — with a draggable handle between them. It replaces an earlier interactive signal-path diagram that was cut for being convoluted for a **non-technical audience**, which is the standing constraint here: the primary visitor is an artist, not an engineer, and any device that needs explaining before it persuades is the wrong device.
 
-- **Trunk stages:** `THE PROBLEM → THE DESIGN → THE RIG → THE DAY → THE HANDOVER`
-- **Branches:** live record, film, live event, dry hire, system design.
-- **Rest state:** the whole path is drawn in `azure-deep`, dormant. It is legible with nothing selected.
-- **Live state:** the selected node fills `prussian-raised` with an azure rim; the trunk up to it lights `azure`; a pulse travels the lit segment.
-- **Interaction:** hover and click on pointer devices; roving arrow-key focus for keyboard; nodes are real `<button>`s in a labelled group. The detail panel is a live region.
-- **Motion:** the pulse is the page's one authored moment. Under `prefers-reduced-motion` the path lights instantly with no travel and the cloud field freezes.
-- **Mobile:** the path rotates to vertical and the detail panel drops beneath the selected node. It never becomes a card list.
+- **Rest state:** split at 50%, both tags legible, the difference obvious without interaction.
+- **Interaction:** drag anywhere on the frame, not only the handle; a real `<input type="range">` underneath carries keyboard and screen-reader support.
+- **Honesty:** until NPG supplies one real pairing, both panels are **drawn**, and the page says so in plain words directly beneath. It is never dressed to imply footage exists.
+
+## Capability list
+
+Five plainly-named things NPG takes on, with one sentence each: live recording, film, live events, touring racks, system design. Hairline rule above each, no fills, no icons, no boxes. Its job is to make the non-content work visible as real capability, which is what carries the "technical partner, content included but not limited to" positioning now that the branching diagram is gone.
 
 ## The Cloud Field
 
-An animated fBm noise field on `<canvas>`, tinted between `ink` and `prussian` with azure blooming where the field is densest. It is rendered at quarter resolution into an offscreen buffer and scaled up — the softness is the point, and it keeps the cost near zero. Capped at 30fps, paused when off-screen or when the tab is hidden, frozen (one static frame) under `prefers-reduced-motion`.
+An animated **domain-warped** fBm noise field on `<canvas>`, tinted between `ink` and `prussian`. Feeding the noise through itself twice is what makes it billow rather than read as a moving gradient. Drift rate is `0.058` (raised from `0.021` at the client's request) — fast enough to be alive, slow enough not to pull attention off the copy. It is rendered at quarter resolution into an offscreen buffer and scaled up — the softness is the point, and it keeps the cost near zero. Capped at 30fps, paused when off-screen or when the tab is hidden, frozen (one static frame) under `prefers-reduced-motion`.
 
 It is a **material, not a backdrop effect**: it may darken toward the page edges and bloom behind the trace, but it never runs beneath body copy at a density that costs contrast.
 
@@ -257,8 +259,8 @@ Square, `prussian-raised` ground, 1px `azure-deep` rule, paper text. Focus takes
 ## Do's and Don'ts
 
 ### Do
-- **Do** let the signal path carry the argument. If a paragraph restates what a node already says, cut the paragraph.
-- **Do** keep the branch structure visible — it is the whole "not only content" claim.
+- **Do** let the comparison carry the argument. If a paragraph restates what the visitor can already see, cut the paragraph.
+- **Do** keep the five capabilities plainly named — they are the whole "not only content" claim now.
 - **Do** set display type wide and heavy so it holds against the field.
 - **Do** blue-shift every neutral.
 - **Do** name the three non-content capabilities as real work: touring racks and dry hire, live event audio and camera, and system design for others to run.
@@ -267,6 +269,7 @@ Square, `prussian-raised` ground, 1px `azure-deep` rule, paper text. Focus takes
 
 ### Don't
 - **Don't** reintroduce the retired world: light-dominant pages, Archivo Light display, the two-anchor rule, hairline row lists as the primary structure.
+- **Don't** reintroduce a process diagram, signal chain, node graph or flowchart as page structure. It was tried and cut: the audience is non-technical and it read as convoluted.
 - **Don't** reintroduce the world retired before that: safety orange, stencil type, hazard stripes, road-case metaphors.
 - **Don't** add a second typeface, and specifically **don't** add a monospace to signal "technical".
 - **Don't** turn azure into a flat filled panel with text on it (The Exposure Rule).

@@ -195,11 +195,12 @@ body {
   margin-right: auto;
 }
 
-.mark__glyph {
-  font-variation-settings: "wdth" 128, "wght" 700;
-  font-size: 1.5rem;
-  line-height: 1;
-  letter-spacing: 0.02em;
+/* The real mark, recoloured for a dark ground rather than redrawn in type.
+   Alpha carries the artwork's blue noise, so the texture survives the recolour. */
+.mark__img {
+  display: block;
+  height: 2.1rem;
+  width: auto;
 }
 
 .mark__word {
@@ -278,267 +279,6 @@ body {
 .titleblock__row:last-child { border-bottom: 0; }
 .titleblock__row span { color: var(--slate); }
 .titleblock__row b { font-variation-settings: "wdth" 88, "wght" 600; color: var(--azure-pale); }
-
-/* ---------- Signal path ---------- */
-
-.path {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: clamp(4rem, 10vh, 8rem) var(--gutter);
-}
-
-.path__head {
-  display: grid;
-  gap: var(--s5);
-  margin-bottom: clamp(3rem, 8vh, 6rem);
-}
-
-@media (min-width: 900px) {
-  .path__head {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-    gap: var(--s7);
-    align-items: end;
-  }
-}
-
-.schematic { position: relative; }
-
-/* Trunk */
-
-.trunk {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: var(--s4);
-  padding-top: var(--s6);
-}
-
-/* Wires — one continuous trace: trunk -> drop -> bus.
-   Every position is measured from the real dot centres in app.js, so the
-   line connects at any breakpoint instead of trusting magic percentages. */
-
-.wires {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.wire {
-  position: absolute;
-  background: var(--azure-deep);
-  transition: background-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
-}
-
-.wire--trunk { overflow: visible; }
-
-.wire__lit {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--azure);
-  box-shadow: 0 0 14px 1px rgba(0, 160, 255, 0.65);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.75s var(--ease);
-}
-
-.wire__pulse {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 7px;
-  height: 7px;
-  margin: -3px 0 0 -3px;
-  border-radius: 50%;
-  background: var(--azure-pale);
-  box-shadow: 0 0 20px 4px rgba(0, 160, 255, 0.8);
-  opacity: 0;
-}
-
-/* Reaching the handover lights the drop, the bus and every tap. */
-.schematic.is-live .wire--drop,
-.schematic.is-live .wire--bus {
-  background: var(--azure);
-  box-shadow: 0 0 16px 1px rgba(0, 160, 255, 0.5);
-}
-
-.node {
-  position: relative;
-  display: grid;
-  justify-items: start;
-  gap: var(--s2);
-  padding: 0 var(--s3) var(--s4) 0;
-  border: 0;
-  background: none;
-  color: var(--paper-dim);
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-  transition: color 0.25s var(--ease);
-}
-
-.node__dot {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  border: 1px solid var(--azure-deep);
-  background: var(--ink);
-  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease),
-              box-shadow 0.4s var(--ease);
-}
-
-.node__index {
-  font-size: 0.625rem;
-  font-variation-settings: "wdth" 88, "wght" 600;
-  letter-spacing: 0.18em;
-  font-variant-numeric: tabular-nums;
-  color: var(--slate);
-  transition: color 0.25s var(--ease);
-}
-
-.node__name {
-  font-variation-settings: "wdth" 100, "wght" 600;
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-}
-
-.node:hover { color: var(--paper); }
-.node:hover .node__dot { border-color: var(--azure); }
-
-.node.is-active { color: var(--paper); }
-.node.is-active .node__index { color: var(--azure); }
-.node.is-active .node__dot {
-  background: var(--azure);
-  border-color: var(--azure-pale);
-  box-shadow: 0 0 24px 4px rgba(0, 160, 255, 0.7);
-}
-
-/* Detail panel */
-
-.panel {
-  border-top: 1px solid var(--rule);
-  padding: var(--s5) 0 var(--s7);
-  display: grid;
-  gap: var(--s3);
-}
-
-@media (min-width: 900px) {
-  .panel {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-    gap: var(--s7);
-    align-items: start;
-  }
-}
-
-.panel__claim {
-  margin: 0;
-  font-variation-settings: "wdth" 108, "wght" 600;
-  font-size: clamp(1.3rem, 2.4vw, 1.9rem);
-  line-height: 1.15;
-  letter-spacing: -0.015em;
-  color: var(--azure-pale);
-  text-wrap: balance;
-}
-
-.panel__body {
-  margin: 0;
-  max-width: 62ch;
-  color: var(--paper-dim);
-}
-
-/* The fan of outputs */
-
-.fan { position: relative; z-index: 1; padding-top: var(--s7); }
-
-.fan__title {
-  margin: 0 0 var(--s5);
-  padding-top: var(--s5);
-  font-size: 0.7rem;
-  font-variation-settings: "wdth" 88, "wght" 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--slate);
-}
-
-.branches {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: var(--s5);
-}
-
-@media (min-width: 900px) {
-  .branches { grid-template-columns: repeat(5, 1fr); gap: var(--s4); }
-}
-
-.branch { position: relative; padding-top: var(--s5); }
-
-.branch__dot {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  border: 1px solid var(--azure-deep);
-  background: var(--ink);
-  transition: border-color 0.5s var(--ease), background-color 0.5s var(--ease),
-              box-shadow 0.5s var(--ease);
-}
-
-.schematic.is-live .branch__dot {
-  border-color: var(--azure-pale);
-  background: var(--azure);
-  box-shadow: 0 0 18px 3px rgba(0, 160, 255, 0.55);
-}
-
-.branch__name {
-  display: block;
-  font-variation-settings: "wdth" 100, "wght" 600;
-  font-size: 1.05rem;
-  line-height: 1.2;
-  margin-bottom: var(--s2);
-}
-
-.branch__note {
-  display: block;
-  font-size: 0.875rem;
-  line-height: 1.55;
-  color: var(--paper-dim);
-  max-width: 40ch;
-}
-
-/* Mobile: the path rotates to a single vertical chain, never a card list.
-   Trunk dots and branch taps share one x so the trace stays continuous. */
-@media (max-width: 899px) {
-  .trunk {
-    grid-template-columns: 1fr;
-    gap: 0;
-    padding-top: 0;
-    padding-left: var(--s5);
-  }
-  .node { padding: var(--s3) 0; }
-  .node__dot {
-    position: absolute;
-    left: calc(var(--s5) * -1);
-    top: 50%;
-    margin-top: -5.5px;
-  }
-  /* Everything in the chain clears the spine, or the line runs through copy. */
-  .panel { padding: var(--s5) 0 var(--s6) var(--s5); }
-  .fan { padding-top: var(--s5); }
-  .fan__title { padding-left: var(--s5); margin-bottom: var(--s4); }
-  .branches { gap: var(--s5); }
-  .branch { padding-left: var(--s5); padding-top: 0; }
-  .branch__dot { top: 0.3em; left: 0; }
-  .branch__note { max-width: none; }
-}
 
 /* ---------- The gap (comparison) ---------- */
 
@@ -843,11 +583,10 @@ body {
   border-top: 1px solid var(--rule);
 }
 
-.foot__mark {
-  font-variation-settings: "wdth" 128, "wght" 700;
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  letter-spacing: 0.02em;
-  color: var(--paper);
+.foot__lockup {
+  display: block;
+  width: clamp(11rem, 22vw, 15rem);
+  height: auto;
 }
 
 .foot__meta {
@@ -866,7 +605,6 @@ body {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
   }
-  .trunk__pulse { display: none; }
 }
 
 /* ---------- Narrow screens ---------- */
@@ -877,7 +615,7 @@ body {
   .nav { display: none; }
   .masthead { gap: var(--s4); padding: var(--s3) var(--gutter); }
   .masthead__cta { padding: 0.85em 1.15em; font-size: 0.625rem; letter-spacing: 0.12em; }
-  .mark__glyph { font-size: 1.25rem; }
+  .mark__img { height: 1.7rem; }
 
   /* Absolute placement collides with the hero actions once the column narrows,
      so the title block rejoins the flow and sits under them. */
@@ -892,4 +630,60 @@ body {
 
 @media (max-width: 420px) {
   .titleblock__row { gap: var(--s3); }
+}
+
+/* ---------- What we take on ---------- */
+
+.does {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: clamp(4rem, 10vh, 8rem) var(--gutter);
+  border-top: 1px solid var(--rule);
+}
+
+.does__head {
+  display: grid;
+  gap: var(--s5);
+  margin-bottom: clamp(3rem, 7vh, 5rem);
+}
+
+@media (min-width: 900px) {
+  .does__head {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: var(--s7);
+    align-items: end;
+  }
+}
+
+.does__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s6) var(--s5);
+}
+
+@media (min-width: 720px)  { .does__list { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .does__list { grid-template-columns: repeat(3, 1fr); } }
+
+.does__item {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s4);
+}
+
+.does__name {
+  margin: 0 0 var(--s3);
+  font-variation-settings: "wdth" 108, "wght" 600;
+  font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--paper);
+}
+
+.does__note {
+  margin: 0;
+  max-width: 42ch;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--paper-dim);
 }

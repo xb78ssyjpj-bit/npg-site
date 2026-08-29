@@ -4,9 +4,13 @@ Working homepage directions. Not the site — these exist to be judged and argue
 
 ## signal-path
 
-The client-picked direction: **the signal path as the argumentative spine (concept 1),
-wrapped in the Nuages cloud field (concept 3)**, with a placeholder version of the
-before/after "gap" slider (concept 4) so the interaction can be judged before media exists.
+The comparison drag (concept 4) is the centrepiece, wrapped in the Nuages cloud field
+(concept 3). The interactive signal path (concept 1) **was built and then cut** — the
+client judged it convoluted for a predominantly non-technical clientele. Its content
+survives as a plain five-item capability list.
+
+The hero's eye-catcher is an **open decision**; what is there now is a holding
+composition.
 
 The visual world is documented in [`../docs/DESIGN.md`](../docs/DESIGN.md) — a cyanotype
 schematic, chosen because the cyanotype is simultaneously a photographic process and the
@@ -21,6 +25,7 @@ python3 -m http.server 8081 --directory prototypes/signal-path
 | Real | Placeholder |
 | --- | --- |
 | All copy, services and capabilities | The drawn stage scene in "The gap" |
+| The logo — the actual master artwork, recoloured for a dark ground | The hero eye-catcher (undecided) |
 | The three named collaborators | Any implied imagery |
 | Contact details | — |
 
