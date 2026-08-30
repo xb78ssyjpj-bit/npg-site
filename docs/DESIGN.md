@@ -219,7 +219,9 @@ Scroll pacing runs: **dense luminous hero → the spine, wide and interactive �
 - **Rest state:** split at 50%, resting on the centre figure, so a single subject is half-degraded and half-clean. A comparison whose two halves show *different* subjects gives the eye nothing to compare — the shared figure on the split is what makes it read.
 - **Grip:** placed in the lower third, clear of any face. It landed on the singer's head in an earlier pass and hid the one thing being compared.
 - **Interaction:** drag anywhere on the frame, not only the handle; a real `<input type="range">` underneath carries keyboard and screen-reader support.
-- **Honesty:** until NPG supplies one real pairing, both panels are **drawn**, and the page says so in plain words directly beneath. It is never dressed to imply footage exists.
+- **Registration is the whole trick.** Both sides carry the *same twelve seconds at the same framing*, so the split reads as one continuous shot rather than two different clips. The phone side is cropped only ~6% with a slow handheld drift; crop it further and the subjects stop lining up across the divide, which is what kills the illusion.
+- **Video, synced.** Two `<video>` elements decoding the same clip drift apart, and drift breaks the registration. The clean side is the clock and the phone side is nudged back whenever it slips past 80ms. Playback pauses off-screen and on a hidden tab, and under `prefers-reduced-motion` neither plays — the posters stand.
+- **Honesty:** the right side is a real NPG capture. The left is that footage degraded to stand in for a phone recording, and the page says so in plain words directly beneath. When a real phone recording exists it replaces the simulation; the label goes with it. It is never dressed to imply a comparison that was not made.
 
 ## Capability list
 

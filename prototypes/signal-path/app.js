@@ -227,6 +227,10 @@
     var before = document.getElementById("compareBefore");
     var handle = document.getElementById("compareHandle");
     var range = document.getElementById("compareRange");
+    var npg = document.getElementById("videoNpg");
+    var phone = document.getElementById("videoPhone");
+
+    /* ---- the split ---- */
 
     function apply(value) {
       before.style.clipPath = "inset(0 " + (100 - value) + "% 0 0)";
@@ -235,18 +239,16 @@
 
     range.addEventListener("input", function () { apply(Number(range.value)); });
 
-    // Dragging anywhere on the stage should move the split, not just the thumb.
     var dragging = false;
 
     function positionFromEvent(event) {
       var box = stage.querySelector(".compare__stage").getBoundingClientRect();
-      var x = (event.clientX - box.left) / box.width * 100;
-      return Math.max(0, Math.min(100, x));
+      return Math.max(0, Math.min(100, (event.clientX - box.left) / box.width * 100));
     }
 
     stage.addEventListener("pointerdown", function (event) {
       dragging = true;
-      stage.setPointerCapture && event.target.setPointerCapture(event.pointerId);
+      if (event.target.setPointerCapture) event.target.setPointerCapture(event.pointerId);
       var value = positionFromEvent(event);
       range.value = value;
       apply(value);
@@ -262,6 +264,51 @@
     window.addEventListener("pointerup", function () { dragging = false; });
 
     apply(50);
+
+    /* ---- the two clips ---- */
+
+    if (!npg || !phone) return;
+
+    // Two elements decoding the same 12 seconds will drift apart, and drift is
+    // exactly what breaks the illusion of one continuous shot. The clean side is
+    // the clock; the phone side is nudged back whenever it slips.
+    function sync() {
+      if (npg.readyState < 2 || phone.readyState < 2) return;
+      if (Math.abs(phone.currentTime - npg.currentTime) > 0.08) {
+        phone.currentTime = npg.currentTime;
+      }
+    }
+    npg.addEventListener("timeupdate", sync);
+    npg.addEventListener("seeked", sync);
+
+    function play() {
+      if (reduced.matches) return;         // posters stay, nothing moves
+      var a = npg.play();
+      var b = phone.play();
+      if (a && a.catch) a.catch(function () {});
+      if (b && b.catch) b.catch(function () {});
+    }
+
+    // Only spend bandwidth once the hero is actually on screen.
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { play(); } else { npg.pause(); phone.pause(); }
+        });
+      }, { threshold: 0.15 }).observe(stage);
+    } else {
+      play();
+    }
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { npg.pause(); phone.pause(); } else { play(); }
+    });
+
+    if (reduced.addEventListener) {
+      reduced.addEventListener("change", function () {
+        if (reduced.matches) { npg.pause(); phone.pause(); } else { play(); }
+      });
+    }
   })();
 
 })();

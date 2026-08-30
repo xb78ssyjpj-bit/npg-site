@@ -24,14 +24,18 @@ python3 -m http.server 8081 --directory prototypes/signal-path
 
 | Real | Placeholder |
 | --- | --- |
-| All copy, services and capabilities | The drawn stage scene in "The gap" |
-| The logo — the actual master artwork, recoloured for a dark ground | The hero eye-catcher (undecided) |
+| All copy, services and capabilities | The phone side of the hero comparison (simulated) |
+| The logo — the actual master artwork, recoloured for a dark ground | — |
+| The NPG side of the hero — real footage, song4 @ 141s | — |
 | The three named collaborators | Any implied imagery |
 | Contact details | — |
 
-The gap slider's two panels are **drawn, not filmed**, and labelled as such on the page.
-One real pairing — the same song, phone capture beside NPG capture — replaces both and
-becomes the strongest thing on the page.
+The hero comparison runs real footage: a 12-second cut from `song4.mkv` at 141s, the one
+sustained shot in that take with the singer centred and no cross-dissolve. The phone side
+is that same cut degraded to stand in for a phone recording, and the page says so. A real
+phone recording of the same performance replaces it when one exists.
+
+Re-cut with ffmpeg from the 4K masters; the source files are not in the repo.
 
 ### Open decisions
 

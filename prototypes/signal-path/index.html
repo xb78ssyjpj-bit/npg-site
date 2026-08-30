@@ -63,144 +63,25 @@
        thing seen, and the offer is shown rather than described. -->
   <section class="hero" id="top">
     <div class="hero__stage" id="compare">
-        <svg class="scene-defs" aria-hidden="true" focusable="false">
-          <defs>
-            <linearGradient id="npgBackdrop" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#061320"/>
-              <stop offset="0.42" stop-color="#0A2942"/>
-              <stop offset="1" stop-color="#03080F"/>
-            </linearGradient>
-            <radialGradient id="npgHaze" cx="0.5" cy="0.5" r="0.5">
-              <stop offset="0" stop-color="#3E9AD8" stop-opacity="0.92"/>
-              <stop offset="0.5" stop-color="#1B5F96" stop-opacity="0.55"/>
-              <stop offset="1" stop-color="#0A2942" stop-opacity="0"/>
-            </radialGradient>
-            <radialGradient id="npgWash" cx="0.5" cy="0.5" r="0.5">
-              <stop offset="0" stop-color="#8FD8FF" stop-opacity="0.55"/>
-              <stop offset="1" stop-color="#8FD8FF" stop-opacity="0"/>
-            </radialGradient>
-            <linearGradient id="npgBeam" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#9BDCFF" stop-opacity="0.42"/>
-              <stop offset="1" stop-color="#9BDCFF" stop-opacity="0"/>
-            </linearGradient>
-
-            <symbol id="npgStage" viewBox="0 -40 1600 1200" preserveAspectRatio="xMidYMid slice">
-              <rect x="0" y="-40" width="1600" height="1200" fill="url(#npgBackdrop)"/>
-
-              <!-- Haze behind the players: without a lit ground the silhouettes
-                   are black on black and the whole scene reads as an empty box. -->
-              <ellipse cx="800" cy="540" rx="960" ry="430" fill="url(#npgHaze)"/>
-              <ellipse cx="800" cy="500" rx="330" ry="300" fill="url(#npgHaze)" opacity="0.75"/>
-              <ellipse cx="330" cy="470" rx="290" ry="240" fill="url(#npgWash)"/>
-              <ellipse cx="1290" cy="480" rx="280" ry="230" fill="url(#npgWash)"/>
-
-              <!-- beams from the truss -->
-              <g fill="url(#npgBeam)">
-                <path d="M267 160 L 60 800 L 486 800 Z"/>
-                <path d="M637 160 L 424 800 L 872 800 Z"/>
-                <path d="M967 160 L 760 800 L 1206 800 Z"/>
-                <path d="M1337 160 L 1128 800 L 1568 800 Z"/>
-              </g>
-
-              <!-- lighting truss -->
-              <rect x="0" y="118" width="1600" height="11" fill="#03080F"/>
-              <g fill="#03080F">
-                <rect x="248" y="129" width="38" height="50"/>
-                <rect x="618" y="129" width="38" height="50"/>
-                <rect x="948" y="129" width="38" height="50"/>
-                <rect x="1318" y="129" width="38" height="50"/>
-              </g>
-
-              <!-- Backlit players. Proportions matter more than detail here: a head
-                   is about a seventh of a standing figure, and getting that wrong is
-                   what made the earlier pass read as blobs rather than people. -->
-              <g fill="#03080F">
-                <!-- guitarist -->
-                <circle cx="430" cy="496" r="23"/>
-                <rect x="424" y="513" width="12" height="13"/>
-                <path d="M389 524 L471 524 L458 646 L402 646 Z"/>
-                <path d="M402 646 L425 646 L422 794 L398 794 Z"/>
-                <path d="M435 646 L458 646 L462 794 L438 794 Z"/>
-                <ellipse cx="470" cy="614" rx="40" ry="31" transform="rotate(-18 470 614)"/>
-                <path d="M494 598 L588 547 L596 561 L502 612 Z"/>
-                <path d="M470 530 L486 537 L476 598 L459 592 Z"/>
-
-                <!-- singer -->
-                <circle cx="800" cy="487" r="24"/>
-                <rect x="794" y="505" width="12" height="14"/>
-                <path d="M757 516 L843 516 L829 642 L771 642 Z"/>
-                <path d="M771 642 L795 642 L792 794 L767 794 Z"/>
-                <path d="M805 642 L829 642 L833 794 L808 794 Z"/>
-                <path d="M759 521 L772 523 L766 607 L753 604 Z"/>
-                <path d="M841 521 L829 525 L807 567 L817 575 Z"/>
-
-                <!-- drummer, seated behind the kit -->
-                <circle cx="1090" cy="548" r="22"/>
-                <path d="M1058 574 L1122 574 L1114 664 L1066 664 Z"/>
-                <path d="M1056 580 L1069 574 L1032 529 L1021 539 Z"/>
-                <path d="M1124 580 L1111 574 L1148 529 L1159 539 Z"/>
-                <ellipse cx="1046" cy="664" rx="34" ry="26"/>
-                <ellipse cx="1090" cy="742" rx="72" ry="58"/>
-                <ellipse cx="1154" cy="708" rx="38" ry="34"/>
-                <ellipse cx="1002" cy="556" rx="60" ry="7"/>
-                <ellipse cx="1182" cy="544" rx="56" ry="7"/>
-              </g>
-
-              <g stroke="#03080F" fill="none" stroke-linecap="round"
-                >
-                <path d="M772 794 L772 512" stroke-width="7"/>
-                <path d="M772 512 L794 500" stroke-width="7"/>
-                <path d="M1006 560 L1012 742" stroke-width="6"/>
-                <path d="M1178 548 L1170 742" stroke-width="6"/>
-              </g>
-
-              <!-- wedges and stage lip -->
-              <g fill="#03080F">
-                <path d="M296 800 l 212 0 l -32 -72 l -148 0 z"/>
-                <path d="M1052 800 l 212 0 l -32 -72 l -148 0 z"/>
-              </g>
-              <rect x="0" y="794" width="1600" height="366" fill="#03080F"/>
-            </symbol>
-          </defs>
-        </svg>
-
-
         <div class="compare__stage">
-        <div class="compare__frame compare__frame--after" aria-hidden="true">
-          <svg class="scene" viewBox="0 -40 1600 1200" preserveAspectRatio="xMidYMid slice">
-            <use href="#npgStage"/>
-          </svg>
-          <span class="compare__tag compare__tag--right">NPG capture</span>
-        </div>
-
-        <div class="compare__frame compare__frame--before" id="compareBefore" aria-hidden="true">
-          <div class="scene-phone">
-            <svg class="scene" viewBox="0 -40 1600 1200" preserveAspectRatio="xMidYMid slice">
-              <use href="#npgStage"/>
-              <!-- the lights clip, and there are heads in the way -->
-              <g fill="#F4F9FC">
-                <ellipse cx="267" cy="166" rx="74" ry="50" opacity="0.62"/>
-                <ellipse cx="637" cy="166" rx="74" ry="50" opacity="0.62"/>
-                <ellipse cx="967" cy="166" rx="74" ry="50" opacity="0.62"/>
-                <ellipse cx="1337" cy="166" rx="74" ry="50" opacity="0.62"/>
-                <ellipse cx="800" cy="450" rx="360" ry="165" opacity="0.20"/>
-              </g>
-              <g fill="#05090D">
-                <circle cx="168" cy="848" r="44"/>
-                <path d="M96 900 q72 -60 144 0 z"/>
-                <circle cx="452" cy="872" r="48"/>
-                <path d="M374 900 q78 -58 156 0 z"/>
-                <circle cx="962" cy="860" r="45"/>
-                <path d="M888 900 q74 -58 148 0 z"/>
-                <circle cx="1318" cy="882" r="50"/>
-                <path d="M1236 900 q82 -56 164 0 z"/>
-                <path d="M690 900 L706 806 L720 806 L736 900 Z"/>
-                <rect x="694" y="756" width="30" height="52" rx="4"/>
-              </g>
-            </svg>
+          <!-- Right: a real NPG capture. Left: the same 12 seconds put through what a
+               phone at the back of a room does to it. Framing is deliberately kept
+               registered between the two so the split reads as one continuous shot. -->
+          <div class="compare__frame compare__frame--after" aria-hidden="true">
+            <video class="scene" id="videoNpg" poster="media/capture-npg.jpg"
+                   autoplay muted loop playsinline preload="metadata">
+              <source src="media/capture-npg.mp4" type="video/mp4">
+            </video>
+            <span class="compare__tag compare__tag--right">NPG capture</span>
           </div>
-          <span class="compare__tag compare__tag--left">Phone, back of the room</span>
-        </div>
+
+          <div class="compare__frame compare__frame--before" id="compareBefore" aria-hidden="true">
+            <video class="scene" id="videoPhone" poster="media/capture-phone.jpg"
+                   autoplay muted loop playsinline preload="metadata">
+              <source src="media/capture-phone.mp4" type="video/mp4">
+            </video>
+            <span class="compare__tag compare__tag--left">Phone, back of the room</span>
+          </div>
 
           <div class="compare__handle" id="compareHandle">
             <span class="compare__grip" aria-hidden="true">
@@ -241,9 +122,10 @@
         distance takes kit most artists don’t own and hours most artists don’t have.
       </p>
       <p class="why__note">
-        <span class="pending">Placeholder — awaiting media</span>
-        Both panels above are drawn, not filmed. Drop in one real pairing, the same song,
-        phone capture beside NPG capture, and this becomes the strongest thing on the page.
+        <span class="pending">Left side simulated</span>
+        The right-hand side is a real NPG capture. The left is that same footage put through
+        what a phone at the back of a room does to it — a stand-in until there is a real phone
+        recording to drop in beside it.
       </p>
     </div>
 
