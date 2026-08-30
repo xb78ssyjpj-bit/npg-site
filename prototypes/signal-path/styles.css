@@ -284,7 +284,7 @@ body {
   pointer-events: none;
 }
 
-.hero__overlay > * { pointer-events: auto; }
+.hero__overlay a { pointer-events: auto; }
 /* The picture is the argument now, so the headline steps down to the documented
    displaySmall and the whole overlay fits above the fold with the action visible. */
 .hero__overlay .lede { margin-top: var(--s4); max-width: 46ch; }
@@ -349,6 +349,7 @@ body {
 
 .compare__stage {
   position: relative;
+  cursor: ew-resize;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border: 1px solid var(--rule-strong);
@@ -395,7 +396,7 @@ body {
   top: 0;
   bottom: 0;
   left: 50%;
-  z-index: 4;
+  z-index: 7;
   width: 1px;
   background: var(--azure);
   box-shadow: 0 0 20px 2px rgba(0, 160, 255, 0.6);
@@ -406,8 +407,11 @@ body {
    invitation, and this is the first thing anyone touches on the page. */
 .compare__grip {
   position: absolute;
-  top: 76%;
+  top: 42%;
   left: 50%;
+  pointer-events: auto;
+  cursor: ew-resize;
+  touch-action: none;
   display: grid;
   place-items: center;
   width: 54px;
@@ -418,6 +422,23 @@ body {
   backdrop-filter: blur(5px);
   color: var(--azure-pale);
   box-shadow: 0 0 30px rgba(0, 160, 255, 0.35);
+  transition: background-color 0.2s var(--ease), box-shadow 0.2s var(--ease),
+              border-color 0.2s var(--ease);
+}
+
+/* A generous invisible grab zone: the visible square stays 54px, but it can be
+   caught from well outside it, which is what makes this easy to hit on a phone. */
+.compare__grip::before {
+  content: "";
+  position: absolute;
+  inset: -22px;
+}
+
+.compare__grip:hover,
+.compare__grip:active {
+  background: rgba(3, 8, 15, 0.86);
+  border-color: var(--azure-pale);
+  box-shadow: 0 0 46px rgba(0, 160, 255, 0.6);
 }
 
 .compare__range {
@@ -720,7 +741,7 @@ body {
   .hero__scrim { display: none; }
   .hero__overlay { padding-top: var(--s6); }
   .compare__tag { top: auto; bottom: var(--s3); }
-  .compare__grip { top: 72%; }
+  .compare__grip { top: 50%; }
 }
 
 /* ---------- Tall windows (half-screen, portrait monitors) ---------- */
@@ -743,5 +764,5 @@ body {
   .hero__scrim { display: none; }
   .hero__overlay { padding-top: var(--s6); }
   .compare__tag { top: auto; bottom: var(--s3); }
-  .compare__grip { top: 72%; }
+  .compare__grip { top: 50%; }
 }
