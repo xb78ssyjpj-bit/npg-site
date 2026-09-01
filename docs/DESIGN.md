@@ -249,6 +249,27 @@ An animated **domain-warped** fBm noise field on `<canvas>`, tinted between `ink
 
 It is a **material, not a backdrop effect**: it may darken toward the page edges and bloom behind the trace, but it never runs beneath body copy at a density that costs contrast.
 
+## Motion
+
+Adapted from two React libraries the client asked to draw on — **Motion Primitives** (text reveal, in-view, spotlight, dock magnification) and **Watermelon UI** (shimmer) — and rebuilt in plain CSS/JS. Neither library is installed: this page has no build step, and pulling in React, Tailwind and Framer Motion to animate five sections would be more machinery than the site, with card-and-radius defaults that fight the rules above.
+
+The set is deliberately small, because scattered hover effects are the failure this replaces:
+
+- **Arrival** — sections rise 22px and fade once, staggered 70ms *within a group* so a row of five reads as one gesture rather than a queue. Never replays.
+- **The hero line** — assembles word by word, 90ms apart, out of a 7px blur. This is the page's one authored entrance; nothing else uses a text effect.
+- **Spotlight** — a soft azure lamp tracks the cursor across the hero footage. It sits *below* the scrim, so it lights the picture and never the copy, which is what keeps it clear of The Ceiling Rule.
+- **Beam** — an azure signal crosses a section's top hairline as it arrives. The one surviving trace of the cut signal-path idea, and the only place the old schematic language remains.
+- **Dock** — the hovered capability lights its rule and steps 6px right. Credit rows do the same on the plate.
+- **Shimmer** — one pass across the primary action on hover. Once, on one control.
+
+### Named rules
+
+**The Opt-In Rule.** Motion is opt-in, never opt-out. A `data-motion` flag is set on `<html>` in the head — before first paint, and only when scripting is on and `prefers-reduced-motion` is not set. Every hidden-by-default style is scoped behind it, so a visitor with no JS, a failed script, or a motion preference gets the page fully visible with nothing to un-hide. Flipping the OS preference mid-session drops the flag and every effect with it.
+
+**The Nothing-Stays-Hidden Rule.** Any content hidden to be revealed must have a guarantee it comes back. The in-view observer is backed by a 2.5s timer that reveals anything still waiting. This is not belt-and-braces: an observer can silently never fire (a scroll-container ancestor, a backgrounded tab), and the cost of that is the reader losing the copy.
+
+**No scroll containers on `body`.** `overflow-x: hidden` computes to `overflow: hidden auto` and turns `body` into a scroll container, which affects sticky positioning and viewport-rooted observers. Use `overflow-x: clip`, which suppresses the same overflow without creating one.
+
 ## Elevation & Depth
 
 Depth is **atmospheric**, not architectural. Things recede by getting bluer, softer, and lower-contrast — the way a light does in fog. There is no shadow ramp and no card lift.

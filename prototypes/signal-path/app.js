@@ -312,3 +312,115 @@
   })();
 
 })();
+
+/* ==========================================================================
+   Motion — patterns from Motion Primitives (text reveal, in view, spotlight)
+   and Watermelon UI (shimmer), rebuilt in plain JS. Nothing here is required
+   to read the page: the `data-motion` flag is set in the head only when
+   scripting is on and motion is wanted, so this module either enhances a
+   fully-visible page or does not run at all.
+   ========================================================================== */
+
+(function motion() {
+  "use strict";
+
+  var root = document.documentElement;
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  // Flipping the OS preference mid-session drops every effect immediately.
+  if (reduced.addEventListener) {
+    reduced.addEventListener("change", function () {
+      if (reduced.matches) delete root.dataset.motion;
+      else root.dataset.motion = "";
+    });
+  }
+
+  if (!("motion" in root.dataset)) return;
+
+  /* ---- Text effect: split the hero line into words ---- */
+
+  var display = document.querySelector(".hero .display");
+  if (display) {
+    var words = display.textContent.trim().split(/\s+/);
+    display.textContent = "";
+    words.forEach(function (word, i) {
+      var span = document.createElement("span");
+      span.className = "word";
+      span.style.setProperty("--i", i);
+      span.textContent = word;
+      display.appendChild(span);
+      if (i < words.length - 1) display.appendChild(document.createTextNode(" "));
+    });
+  }
+
+  /* ---- In view ---- */
+
+  var targets = Array.prototype.slice.call(
+    document.querySelectorAll(".rise, .beam, .hero .display"));
+
+  // Stagger within a group rather than across the page, so a row of five reads
+  // as one gesture instead of a queue.
+  targets.forEach(function (el) {
+    if (!el.classList.contains("rise") || !el.parentElement) return;
+    var peers = Array.prototype.filter.call(el.parentElement.children, function (n) {
+      return n.classList && n.classList.contains("rise");
+    });
+    el.style.setProperty("--i", peers.indexOf(el));
+  });
+
+  function reveal(el) {
+    el.classList.add("is-in");
+    el.addEventListener("transitionend", function done() {
+      el.classList.add("is-settled");
+      el.removeEventListener("transitionend", done);
+    });
+  }
+
+  if (!("IntersectionObserver" in window)) {
+    targets.forEach(reveal);
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      reveal(entry.target);
+      io.unobserve(entry.target);          // arrivals happen once, not on every pass
+    });
+  }, { rootMargin: "0px 0px -12% 0px", threshold: 0.15 });
+
+  targets.forEach(function (el) { io.observe(el); });
+
+  // Safety net. Hidden-by-default content is only ever acceptable if something
+  // guarantees it comes back — an observer that never fires (a scroll-container
+  // ancestor, an engine quirk) must not cost the reader the copy.
+  setTimeout(function () {
+    targets.forEach(function (el) {
+      if (!el.classList.contains("is-in")) { reveal(el); io.unobserve(el); }
+    });
+  }, 2500);
+
+  /* ---- Spotlight: a lamp you aim across the footage ---- */
+
+  var hero = document.querySelector(".hero");
+  var spot = document.querySelector(".hero__spot");
+
+  if (hero && spot && window.matchMedia("(hover: hover)").matches) {
+    var pending = false;
+    var px = 0, py = 0;
+
+    hero.addEventListener("pointermove", function (event) {
+      if (event.pointerType !== "mouse") return;
+      var box = hero.getBoundingClientRect();
+      px = ((event.clientX - box.left) / box.width) * 100;
+      py = ((event.clientY - box.top) / box.height) * 100;
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(function () {
+        pending = false;
+        spot.style.setProperty("--spot-x", px + "%");
+        spot.style.setProperty("--spot-y", py + "%");
+      });
+    }, { passive: true });
+  }
+})();

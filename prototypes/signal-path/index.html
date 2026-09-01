@@ -35,6 +35,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script>
+  // Set before first paint: motion is opt-in, so no-JS and reduced-motion
+  // visitors get the page fully visible with nothing to un-hide.
+  try {
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.dataset.motion = "";
+    }
+  } catch (e) {}
+</script>
 </head>
 <body>
 
@@ -96,6 +105,7 @@
         </div>
     </div>
 
+    <div class="hero__spot" aria-hidden="true"></div>
     <div class="hero__scrim" aria-hidden="true"></div>
 
     <div class="hero__overlay">
@@ -114,7 +124,7 @@
 
   <!-- ============================== THE GAP ============================== -->
   <section class="why" id="gap">
-    <div class="why__copy">
+    <div class="why__copy rise">
       <h2 class="headline">That difference is the whole job.</h2>
       <p class="lede">
         These days you’re usually seen on a screen before you’re heard in a room. The
@@ -132,8 +142,8 @@
   </section>
 
   <!-- ========================== WHAT WE DO =============================== -->
-  <section class="does" id="what">
-    <div class="does__head">
+  <section class="does beam" id="what">
+    <div class="does__head rise">
       <h2 class="headline">What we do.</h2>
       <p class="lede">
         Tell us what you’re making and roughly when. That’s all you need to bring.
@@ -141,23 +151,23 @@
     </div>
 
     <ul class="does__list">
-      <li class="does__item">
+      <li class="does__item rise">
         <h3 class="does__name">Live recording</h3>
         <p class="does__note">Sessions through to full live records. Filmed, tracked and mixed.</p>
       </li>
-      <li class="does__item">
+      <li class="does__item rise">
         <h3 class="does__name">Film</h3>
         <p class="does__note">Music video, social, and live session film.</p>
       </li>
-      <li class="does__item">
+      <li class="does__item rise">
         <h3 class="does__name">Live events</h3>
         <p class="does__note">Audio and cameras, run on the day.</p>
       </li>
-      <li class="does__item">
+      <li class="does__item rise">
         <h3 class="does__name">Touring racks</h3>
         <p class="does__note">Bespoke rack solutions, built for the road.</p>
       </li>
-      <li class="does__item">
+      <li class="does__item rise">
         <h3 class="does__name">System design</h3>
         <p class="does__note">We design the setup and hand you the plan.</p>
       </li>
@@ -167,24 +177,24 @@
   <!-- =========================== CREDITS (plate) =========================== -->
   <section class="plate" id="credits">
     <div class="plate__inner">
-      <div class="plate__head">
+      <div class="plate__head rise">
         <h2 class="headline">Worked with</h2>
       </div>
 
       <ol class="credits">
-        <li class="credit">
+        <li class="credit rise">
           <span class="credit__idx">01</span>
           <span class="credit__name">Silver Chamber Ensemble</span>
           <span class="credit__disc">Ongoing collaboration</span>
           <span class="credit__media">Media pending</span>
         </li>
-        <li class="credit">
+        <li class="credit rise">
           <span class="credit__idx">02</span>
           <span class="credit__name">Manchester Troubadors</span>
           <span class="credit__disc">Ongoing collaboration</span>
           <span class="credit__media">Media pending</span>
         </li>
-        <li class="credit">
+        <li class="credit rise">
           <span class="credit__idx">03</span>
           <span class="credit__name">Gone Tomorrow</span>
           <span class="credit__disc">Ongoing collaboration</span>
@@ -196,7 +206,7 @@
 
   <!-- ============================ CONTACT ============================ -->
   <section class="close" id="contact">
-    <div class="close__inner">
+    <div class="close__inner rise">
       <h2 class="display display--close">Tell us what<br>you’re making.</h2>
       <p class="lede">
         Roughly what, roughly when. If the technical side is the part you can’t picture yet,
@@ -206,7 +216,7 @@
         <a class="btn btn--primary" href="mailto:info@nuagesproductiongroup.co.uk">Send us a brief</a>
         <a class="btn btn--ghost" href="https://instagram.com/nuagesproductiongroup" rel="noopener">Instagram</a>
       </div>
-      <dl class="details">
+      <dl class="details beam">
         <div><dt>Email</dt><dd><a href="mailto:info@nuagesproductiongroup.co.uk">info@nuagesproductiongroup.co.uk</a></dd></div>
         <div><dt>Phone</dt><dd><a href="tel:+447946200720">+44 7946 200720</a></dd></div>
         <div><dt>Based</dt><dd>Manchester, UK</dd></div>

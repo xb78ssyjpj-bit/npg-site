@@ -53,7 +53,11 @@ body {
   font-size: clamp(0.975rem, 0.3vw + 0.9rem, 1.0625rem);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* `clip`, not `hidden`: overflow-x:hidden computes to `hidden auto` and turns
+     body into a scroll container, which silently stops IntersectionObserver
+     firing against the viewport. `clip` suppresses the same overflow without
+     creating one. */
+  overflow-x: clip;
 }
 
 /* ---------- The cloud field ---------- */
@@ -765,4 +769,161 @@ body {
   .hero__overlay { padding-top: var(--s6); }
   .compare__tag { top: auto; bottom: var(--s3); }
   .compare__grip { top: 50%; }
+}
+
+/* ==========================================================================
+   Motion system
+   Patterns adapted from Motion Primitives (text reveal, in-view, spotlight,
+   dock magnification) and Watermelon UI (shimmer), rebuilt in plain CSS/JS —
+   this page has no build step, and their card/rounded defaults fight this
+   system's square, card-less rules.
+
+   Everything is opt-in: content renders fully without JS, and the `data-motion`
+   flag is only set when scripting is on and prefers-reduced-motion is off. So a
+   failed script can never leave copy hidden.
+   ========================================================================== */
+
+/* ---------- In view: sections arrive, once ---------- */
+
+[data-motion] .rise {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  will-change: opacity, transform;
+}
+
+[data-motion] .rise.is-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+
+[data-motion] .rise.is-in.is-settled { will-change: auto; }
+
+/* ---------- Text effect: the hero line assembles word by word ---------- */
+
+[data-motion] .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, 0.42em, 0);
+  filter: blur(7px);
+}
+
+[data-motion] .display.is-in .word {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease), filter 0.75s var(--ease);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+/* ---------- Spotlight: a lamp you aim, under the scrim ---------- */
+
+/* Sits below .hero__scrim (z-3), so it lights the footage and never the copy —
+   which is what keeps it clear of the Ceiling Rule in DESIGN.md. */
+.hero__spot {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: opacity 0.6s var(--ease);
+  background: radial-gradient(
+    22rem 22rem at var(--spot-x, 50%) var(--spot-y, 40%),
+    rgba(0, 160, 255, 0.20),
+    rgba(0, 160, 255, 0.07) 42%,
+    transparent 70%);
+}
+
+[data-motion] .hero:hover .hero__spot { opacity: 1; }
+
+/* ---------- Dock: the hovered capability steps forward ---------- */
+
+.does__item {
+  transition: border-color 0.35s var(--ease);
+}
+
+.does__name,
+.does__note {
+  transition: transform 0.4s var(--ease), color 0.35s var(--ease);
+}
+
+.does__item:hover { border-top-color: var(--azure); }
+.does__item:hover .does__name { transform: translateX(6px); color: var(--azure-pale); }
+.does__item:hover .does__note { transform: translateX(6px); }
+
+/* ---------- Beam: a signal crossing the rule as the section arrives ---------- */
+
+.beam { position: relative; }
+
+.beam::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  height: 1px;
+  width: 34%;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, var(--azure), transparent);
+  box-shadow: 0 0 12px 1px rgba(0, 160, 255, 0.5);
+}
+
+[data-motion] .beam.is-in::after {
+  animation: beam-sweep 1.5s var(--ease) 0.15s 1 both;
+}
+
+@keyframes beam-sweep {
+  0%   { opacity: 0; transform: translateX(-40%); }
+  22%  { opacity: 1; }
+  78%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(340%); }
+}
+
+/* ---------- Shimmer: one pass across the primary action ---------- */
+
+.btn--primary { position: relative; overflow: hidden; }
+
+.btn--primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 45%;
+  pointer-events: none;
+  transform: skewX(-18deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+  opacity: 0;
+}
+
+[data-motion] .btn--primary:hover::after,
+[data-motion] .btn--primary:focus-visible::after {
+  animation: shimmer 0.75s var(--ease) 1 both;
+}
+
+@keyframes shimmer {
+  from { opacity: 1; left: -60%; }
+  to   { opacity: 0; left: 115%; }
+}
+
+/* ---------- Credit rows ---------- */
+
+.credit {
+  transition: background-color 0.3s var(--ease);
+}
+.credit__idx,
+.credit__name { transition: transform 0.35s var(--ease), color 0.3s var(--ease); }
+.credit:hover { background: rgba(11, 32, 51, 0.05); }
+.credit:hover .credit__idx { color: var(--azure-deep); }
+.credit:hover .credit__idx,
+.credit:hover .credit__name { transform: translateX(6px); }
+
+/* Motion is opt-in, so honouring the preference is just never opting in —
+   but keep the guard for anything that animates outside the flag. */
+@media (prefers-reduced-motion: reduce) {
+  [data-motion] .rise,
+  [data-motion] .word { opacity: 1; transform: none; filter: none; }
+  .beam::after, .btn--primary::after { animation: none !important; }
 }
