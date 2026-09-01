@@ -894,7 +894,8 @@ body {
   width: 45%;
   pointer-events: none;
   transform: skewX(-18deg);
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+  /* --paper, not pure white: the Blue-Neutral Rule holds for highlights too. */
+  background: linear-gradient(90deg, transparent, rgba(234, 244, 251, 0.42), transparent);
   opacity: 0;
 }
 
