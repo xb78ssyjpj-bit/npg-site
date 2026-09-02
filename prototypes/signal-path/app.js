@@ -424,3 +424,101 @@
     }, { passive: true });
   }
 })();
+
+/* ==========================================================================
+   Credits — play a track without loading YouTube on arrival
+   ==========================================================================
+   A credit row carrying data-yt grows a Play control in place of its "Media
+   pending" chip. Opening it reveals a flat slot in the plate's own colours;
+   only when that is clicked is an iframe created and YouTube contacted at all.
+
+   The facade is the point: a YouTube embed pulls a large amount of third-party
+   script and sets cookies on page load, for a player most visitors never touch.
+   Rows with no data-yt keep their pending chip and stay inert, so this is a
+   one-attribute change per track rather than a markup rewrite.
+   ========================================================================== */
+
+(function creditPlayers() {
+  "use strict";
+
+  var rows = document.querySelectorAll("li.credit[data-yt]");
+  if (!rows.length) return;
+
+  var PLAY_ICON =
+    '<svg viewBox="0 0 12 14" width="12" height="14" aria-hidden="true" focusable="false">' +
+    '<path d="M1 1.2v11.6L11.2 7z" fill="currentColor"/></svg>';
+
+  var open = null;
+
+  Array.prototype.forEach.call(rows, function (row, i) {
+    var id = row.getAttribute("data-yt");
+    var track = row.getAttribute("data-track") || "";
+    if (!id) return;
+
+    var chip = row.querySelector(".credit__media");
+    var panelId = "credit-player-" + (i + 1);
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "credit__play";
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-controls", panelId);
+    btn.innerHTML = PLAY_ICON + "<span>Play</span>";
+
+    var panel = document.createElement("div");
+    panel.className = "credit__player";
+    panel.id = panelId;
+    panel.hidden = true;
+
+    var frame = document.createElement("div");
+    frame.className = "credit__frame";
+
+    var facade = document.createElement("button");
+    facade.type = "button";
+    facade.className = "credit__facade";
+    facade.innerHTML =
+      '<span class="credit__facade-mark">' + PLAY_ICON + "</span>" +
+      '<span class="credit__facade-title"></span>';
+    facade.querySelector(".credit__facade-title").textContent = track;
+    facade.setAttribute("aria-label", track ? "Play " + track : "Play track");
+
+    frame.appendChild(facade);
+    panel.appendChild(frame);
+
+    if (chip) chip.replaceWith(btn); else row.appendChild(btn);
+    row.appendChild(panel);
+
+    function close() {
+      panel.hidden = true;
+      btn.setAttribute("aria-expanded", "false");
+      // Tearing the iframe down stops playback and drops the third-party context.
+      var iframe = frame.querySelector("iframe");
+      if (iframe) iframe.remove();
+      facade.hidden = false;
+      if (open === close) open = null;
+    }
+
+    btn.addEventListener("click", function () {
+      if (!panel.hidden) { close(); return; }
+      if (open) open();               // one at a time
+      panel.hidden = false;
+      btn.setAttribute("aria-expanded", "true");
+      open = close;
+    });
+
+    facade.addEventListener("click", function () {
+      if (frame.querySelector("iframe")) return;
+      var iframe = document.createElement("iframe");
+      // nocookie host, and no related-video trawl at the end.
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id) +
+                   "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+      iframe.title = track || "Track";
+      iframe.loading = "lazy";
+      iframe.allow = "accelerometer; autoplay; encrypted-media; picture-in-picture";
+      iframe.setAttribute("allowfullscreen", "");
+      iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+      facade.hidden = true;
+      frame.appendChild(iframe);
+    });
+  });
+})();

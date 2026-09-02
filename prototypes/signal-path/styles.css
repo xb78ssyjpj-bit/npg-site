@@ -24,7 +24,9 @@
   /* Ink-on-plate, for the one pale section */
   --plate-ink:       #0B2033;
   --plate-slate:     #43647E;
-  --plate-rule:      rgba(11, 32, 51, 0.16);
+  --plate-rule:        rgba(11, 32, 51, 0.16);
+  --plate-rule-strong: rgba(11, 32, 51, 0.32);
+  --plate-wash:        rgba(11, 32, 51, 0.07);
 
   --rule:            rgba(127, 207, 255, 0.16);
   --rule-strong:     rgba(127, 207, 255, 0.30);
@@ -927,4 +929,105 @@ body {
   [data-motion] .rise,
   [data-motion] .word { opacity: 1; transform: none; filter: none; }
   .beam::after, .btn--primary::after { animation: none !important; }
+}
+
+/* ---------- Credits: a track you can actually hear ---------- */
+
+/* Nothing is requested from YouTube until the play control is used. The rest is
+   a flat slot in the plate's own colours — the Media Slot rule, not a dressed-up
+   thumbnail pretending a video is already loaded. */
+
+.credit__play {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.35em 0.7em;
+  border: 1px solid var(--plate-rule);
+  border-radius: 0;
+  background: transparent;
+  color: var(--plate-slate);
+  font: inherit;
+  font-size: 0.625rem;
+  font-variation-settings: "wdth" 88, "wght" 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+
+@media (min-width: 760px) { .credit__play { justify-self: end; } }
+
+.credit__play:hover,
+.credit__play:focus-visible {
+  color: var(--plate-ink);
+  border-color: var(--plate-rule-strong);
+}
+
+.credit__play svg { display: block; }
+
+.credit__player {
+  grid-column: 1 / -1;
+  margin-top: var(--s4);
+}
+
+.credit__player[hidden] { display: none; }
+
+.credit__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 46rem;
+  background: var(--plate-wash);
+  border: 1px solid var(--plate-rule);
+}
+
+.credit__frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* Facade — what stands in for the player until someone asks for it. */
+.credit__facade {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s3);
+  border: 0;
+  background: transparent;
+  color: var(--plate-ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+.credit__facade-mark {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid var(--plate-rule-strong);
+  color: var(--plate-ink);
+  transition: background-color 0.25s var(--ease), border-color 0.25s var(--ease),
+              color 0.25s var(--ease);
+}
+
+.credit__facade:hover .credit__facade-mark,
+.credit__facade:focus-visible .credit__facade-mark {
+  background: var(--plate-ink);
+  border-color: var(--plate-ink);
+  color: var(--paper-plate);
+}
+
+.credit__facade-title {
+  font-size: 0.75rem;
+  font-variation-settings: "wdth" 92, "wght" 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }

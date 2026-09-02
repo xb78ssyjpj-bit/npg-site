@@ -166,6 +166,7 @@ The scene forces dark: the subject is rooms, stages, and load-ins, and the page'
 - **Paper** (`#EAF4FB`) — primary text on dark. Never pure white; a cyanotype's highlight is paper, and paper is slightly blue here.
 - **Paper Plate** (`#DCE9F2`) — the ground of the one pale section.
 - **Paper Dim** (`#A8C4D8`) — secondary text on dark (≈9.5:1 on Ink).
+- **Plate ramp** — the pale section's ink at three alphas and no others: `--plate-wash` (0.07) for a surface, `--plate-rule` (0.16) for a hairline, `--plate-rule-strong` (0.32) for an emphasised edge. The plate has no separate greys; everything on it is `--plate-ink` stepped down.
 - **Slate** (`#8BA6BD`) — annotation and tertiary text on dark. Its value is set by The Ceiling Rule below, not by taste: it is the dimmest tone that still clears 4.5:1 against the brightest patch the cloud field can produce (4.66:1).
 
 ### Named rules
@@ -290,7 +291,15 @@ Square. Radius `0` everywhere except genuinely circular things: node dots, the p
 ### Credit plate (the one pale section)
 The credit list, set as a cyanotype contact sheet: `paper-plate` ground, ink linework, entries as rows with hairline separators reading name → discipline → year. This is the section the client explicitly asked to keep. The monogram is **redrawn in type** across the site (client's decision), so it takes any colour and the black master artwork is not used in the build. Should that master ever be placed, this plate is the only ground it is legal on — everywhere else is dark.
 
-### Media slot
+### Credit player
+
+A credit row can carry a track. Adding `data-yt="<id>"` and `data-track="Artist — Track"` to its `<li>` swaps that row's *Media pending* chip for a **Play** control; rows without the attribute stay inert and keep the chip. Enabling a track is therefore one attribute, not a markup change.
+
+**Nothing is requested from YouTube until a visitor asks for it.** Opening a row reveals a flat slot in the plate's own colours — the Media Slot rule, not a thumbnail dressed up to look like a loaded player. Only clicking *that* builds the iframe. A stock embed pulls a large amount of third-party script and sets cookies on arrival, for a player most visitors never touch; on a page whose credit list is its proof, that cost lands on everyone to serve a few.
+
+Details that are load-bearing: the host is `youtube-nocookie.com`, `rel=0` stops the related-video trawl at the end, closing a row removes the iframe so playback stops and the third-party context goes with it, and only one row is open at a time.
+
+## Media slot
 16:9, `prussian` ground, 1px `azure-deep` rule, centred annotation-scale label. Where NPG has no media it says so plainly. It is never dressed up to imply an image exists.
 
 ### Inputs
