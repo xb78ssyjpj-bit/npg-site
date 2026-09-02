@@ -225,18 +225,6 @@ Scroll pacing runs: **dense luminous hero → the spine, wide and interactive �
 - **Video, synced.** Two `<video>` elements decoding the same clip drift apart, and drift breaks the registration. The clean side is the clock and the phone side is nudged back whenever it slips past 80ms. Playback pauses off-screen and on a hidden tab, and under `prefers-reduced-motion` neither plays — the posters stand.
 - **Honesty:** the right side is a real NPG capture. The left is that footage degraded to stand in for a phone recording, and the page says so in plain words directly beneath. When a real phone recording exists it replaces the simulation; the label goes with it. It is never dressed to imply a comparison that was not made.
 
-## Hero audio
-
-The same handle mixes **sound** as well as picture: hard left is the phone recording, hard right is the NPG capture. For a company whose work is largely audio, the visual half of the comparison was the weaker half — this is the part that actually proves the claim.
-
-- **Off until asked for.** Audio that starts on its own is hostile, and browsers block it without a gesture anyway. A labelled control sits bottom-right of the frame, reading *Hear the difference* until it is on.
-- **Equal-power crossfade**, not linear. A linear fade dips about 3dB through the middle and sounds like a hole opening halfway across the drag; `sin`/`cos` keeps perceived loudness constant end to end.
-- **Both clips are sample-locked.** They are decoded to buffers and started on the same audio-clock tick, sharing one `loopEnd`. Two `<audio>` elements would drift the way the two videos do, and 80ms between two copies of one performance is not subtle — it comb-filters into a slap echo.
-- **Audio is the master clock.** The picture is nudged to the audio position, never the reverse: a performance out of lip sync is far more obvious than a video moved a frame or two.
-- **Silent when unwatched** — the context suspends when the tab is hidden or the hero scrolls away.
-
-The degraded track is generated from the real one (mono-summed, band-limited 300Hz–3.6kHz, hard-compressed, room echo, clipped, low bitrate) and is a **stand-in**, labelled as such on the page, until a real phone recording replaces it — the same arrangement the picture is under.
-
 ## Capability list
 
 Five plainly-named things NPG takes on, with one sentence each: live recording, film, live events, touring racks, system design. Hairline rule above each, no fills, no icons, no boxes. Its job is to make the non-content work visible as real capability, which is what carries the "technical partner, content included but not limited to" positioning now that the branching diagram is gone.
