@@ -235,6 +235,8 @@
     function apply(value) {
       before.style.clipPath = "inset(0 " + (100 - value) + "% 0 0)";
       handle.style.left = value + "%";
+      // One value drives picture and sound; the audio module listens for this.
+      stage.dispatchEvent(new CustomEvent("npg:mix", { detail: value / 100 }));
     }
 
     range.addEventListener("input", function () { apply(Number(range.value)); });
@@ -247,6 +249,7 @@
     }
 
     stage.addEventListener("pointerdown", function (event) {
+      if (event.target.closest && event.target.closest(".sound")) return;
       dragging = true;
       if (event.target.setPointerCapture) event.target.setPointerCapture(event.pointerId);
       var value = positionFromEvent(event);
@@ -422,5 +425,188 @@
         spot.style.setProperty("--spot-y", py + "%");
       });
     }, { passive: true });
+  }
+})();
+
+/* ==========================================================================
+   Hero audio — the drag mixes sound as well as picture
+   ==========================================================================
+   The visual half of the comparison is the weaker half for a company whose
+   work is largely sound, so the same handle crossfades the audio: all the way
+   left is the phone recording, all the way right is the NPG capture.
+
+   Both clips are decoded into buffers and started on the SAME audio-clock tick,
+   which locks them together sample for sample. Two <audio> elements would drift
+   the way the two videos do, and 80ms of drift between two copies of the same
+   performance is not a subtle artefact — it comb-filters into a slap echo.
+   ========================================================================== */
+
+(function heroAudio() {
+  "use strict";
+
+  var stage = document.getElementById("compare");
+  var btn = document.getElementById("soundToggle");
+  var label = document.getElementById("soundLabel");
+  var range = document.getElementById("compareRange");
+  var npg = document.getElementById("videoNpg");
+  if (!stage || !btn || !range || !npg) return;
+
+  var AudioCtor = window.AudioContext || window.webkitAudioContext;
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  // Nothing to hear if the clips are not playing, and no point offering it.
+  if (!AudioCtor || reduced.matches) return;
+  btn.hidden = false;
+
+  var TRACKS = { good: "media/capture-npg.m4a", phone: "media/capture-phone.m4a" };
+
+  var ctx = null, master = null, gainGood = null, gainPhone = null;
+  var srcGood = null, srcPhone = null;
+  var loopLength = 0, startedAt = 0, on = false, loading = false;
+
+  /* ---- mix ---- */
+
+  // Equal power, not linear: a linear crossfade dips ~3dB through the middle and
+  // sounds like a hole opening up halfway across the drag.
+  function setMix(t) {
+    if (!gainGood) return;
+    var now = ctx.currentTime;
+    gainPhone.gain.setTargetAtTime(Math.sin(t * Math.PI / 2), now, 0.02);
+    gainGood.gain.setTargetAtTime(Math.cos(t * Math.PI / 2), now, 0.02);
+  }
+
+  stage.addEventListener("npg:mix", function (e) { setMix(e.detail); });
+
+  /* ---- wiring ---- */
+
+  function fetchBuffer(url) {
+    return fetch(url)
+      .then(function (r) {
+        if (!r.ok) throw new Error(url + " " + r.status);
+        return r.arrayBuffer();
+      })
+      .then(function (buf) {
+        return new Promise(function (res, rej) { ctx.decodeAudioData(buf, res, rej); });
+      });
+  }
+
+  function build(buffers) {
+    // Loop both to the shorter length so the pair stays phase-locked. The phone
+    // file is ~70ms longer only because its room echo has a tail.
+    loopLength = Math.min(buffers[0].duration, buffers[1].duration);
+
+    master = ctx.createGain();
+    master.gain.value = 0;
+    master.connect(ctx.destination);
+
+    gainGood = ctx.createGain();
+    gainPhone = ctx.createGain();
+    gainGood.connect(master);
+    gainPhone.connect(master);
+
+    srcGood = ctx.createBufferSource();
+    srcPhone = ctx.createBufferSource();
+    srcGood.buffer = buffers[0];
+    srcPhone.buffer = buffers[1];
+
+    [srcGood, srcPhone].forEach(function (src) {
+      src.loop = true;
+      src.loopStart = 0;
+      src.loopEnd = loopLength;
+    });
+
+    srcGood.connect(gainGood);
+    srcPhone.connect(gainPhone);
+
+    // Same start time for both — this is what guarantees they stay locked.
+    startedAt = ctx.currentTime + 0.06;
+    srcGood.start(startedAt, npg.currentTime % loopLength);
+    srcPhone.start(startedAt, npg.currentTime % loopLength);
+
+    setMix(Number(range.value) / 100);
+  }
+
+  function audioPosition() {
+    return (ctx.currentTime - startedAt) % loopLength;
+  }
+
+  /* ---- keep the picture with the sound ---- */
+
+  // Audio is the master clock here: a performance drifting out of lip sync is
+  // far more obvious than a video nudged a frame or two.
+  setInterval(function () {
+    if (!on || !ctx || ctx.state !== "running" || npg.readyState < 2) return;
+    var target = audioPosition();
+    if (target >= 0 && Math.abs(npg.currentTime - target) > 0.2) {
+      npg.currentTime = target;
+    }
+  }, 1000);
+
+  /* ---- toggle ---- */
+
+  function fade(to, seconds) {
+    var now = ctx.currentTime;
+    master.gain.cancelScheduledValues(now);
+    master.gain.setValueAtTime(master.gain.value, now);
+    master.gain.linearRampToValueAtTime(to, now + seconds);
+  }
+
+  function setLabel(text, pressed) {
+    label.textContent = text;
+    btn.setAttribute("aria-pressed", pressed ? "true" : "false");
+    btn.setAttribute("aria-label", pressed ? "Turn sound off" : "Turn sound on");
+  }
+
+  btn.addEventListener("click", function () {
+    if (loading) return;
+
+    if (!ctx) {
+      loading = true;
+      btn.disabled = true;
+      label.textContent = "Loading";
+      ctx = new AudioCtor();
+      Promise.all([fetchBuffer(TRACKS.good), fetchBuffer(TRACKS.phone)])
+        .then(function (buffers) {
+          build(buffers);
+          loading = false;
+          btn.disabled = false;
+          on = true;
+          fade(1, 0.45);
+          setLabel("Sound on", true);
+        })
+        .catch(function () {
+          // No sound is recoverable; a broken control is not.
+          loading = false;
+          btn.disabled = false;
+          btn.hidden = true;
+          ctx = null;
+        });
+      return;
+    }
+
+    on = !on;
+    if (on) {
+      if (ctx.state === "suspended") ctx.resume();
+      fade(1, 0.35);
+      setLabel("Sound on", true);
+    } else {
+      fade(0, 0.3);
+      setLabel("Hear the difference", false);
+    }
+  });
+
+  /* ---- do not play to an empty room ---- */
+
+  function idle() { if (ctx && ctx.state === "running" && on) ctx.suspend(); }
+  function wake() { if (ctx && ctx.state === "suspended" && on) ctx.resume(); }
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) idle(); else wake();
+  });
+
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) wake(); else idle(); });
+    }, { threshold: 0.2 }).observe(stage);
   }
 })();
